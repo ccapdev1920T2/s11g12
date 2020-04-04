@@ -1,0 +1,483 @@
+<html>
+	<head>
+		<Title>{{title}}</Title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+<style>
+/* Important stuff for this demo. */
+
+.pics_in_a_row img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.pics_in_a_row {
+  display: flex;
+  background-color: white;
+}
+
+.img1 { flex: 1.3344; }
+.img2 { flex: 1.3345; }
+.img3 { flex: 2; }
+.img4 { flex: 1.3344; }
+.img5 { flex: 1.3344; }
+.img6 { flex: 1.2; }
+.img7 { flex: 1; }
+
+
+
+/* Aaaand just some general styling. */
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+.pics_in_a_row {
+  margin: 30px 0;
+}
+
+.pics_in_a_row > div:not(:last-child) {
+  margin-right: 1%;
+}
+
+.pics_in_a_row:hover img{
+  opacity: .25;
+  transform: scale(.8);
+  transition: opacity 1s, transform 1s;
+}
+
+.pics_in_a_row a:hover img{
+  opacity: 1;
+  transform: scale(1.2);
+}
+
+#Shampoo{
+	width:500px;
+	height:500px;
+	text-align: right;
+}
+
+.carousel-inner img {
+  margin: auto;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+  padding: 5px;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* STYLE FOR PRODUCT VIEW */
+body {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg {
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)}
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)}
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content {
+    width: 100%;
+  }
+}
+
+
+.custom_div {
+overflow:hidden;
+}
+.custom_div div {
+min-height: 100%;
+padding: 10px;
+text-align: center;
+}
+#myImg {
+background-color: white;
+float:left;
+margin-right:0px;
+width:50%;
+}
+
+#two {
+background-color: white;
+overflow:hidden;
+margin-right: 20px;
+margin: 1px;
+width:auto;
+min-height: 50%;
+}
+
+@media screen and (max-width: 600px) {
+#one {
+    float: none;
+    margin-right:0;
+    width:auto;
+}
+
+span {cursor:pointer; }
+.number{
+	margin:100px;
+}
+.minus, .plus{
+			width:20px;
+			height:20px;
+			background:#f2f2f2;
+			border-radius:4px;
+			padding:8px 5px 8px 5px;
+			border:1px solid #ddd;
+            display: inline-block;
+		    vertical-align: middle;
+		    text-align: center;
+}
+input{
+	  height:34px;
+      width: 100px;
+      text-align: center;
+      font-size: 26px;
+			border:1px solid #ddd;
+			border-radius:4px;
+      display: inline-block;
+      vertical-align: middle;
+}
+
+/* for contact us*/
+
+/*Contact sectiom*/
+.content-header{
+  font-family: 'Oleo Script', cursive;
+  color:#fcc500;
+  font-size: 45px;
+}
+
+.section-content{
+  text-align: center;
+
+}
+#contact{
+
+    font-family: 'Teko', sans-serif;
+  padding-top: 60px;
+  width: 100%;
+  width: 100vw;
+  height: 550px;
+  background: #3a6186; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to left, #3a6186 , #89253e); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to left, #3a6186 , #89253e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    color : #fff;
+}
+.contact-section{
+  padding-top: 40px;
+}
+.contact-section .col-md-6{
+  width: 50%;
+}
+
+.form-line{
+  border-right: 1px solid #B29999;
+}
+
+.form-group{
+  margin-top: 10px;
+}
+label{
+  font-size: 1.3em;
+  line-height: 1em;
+  font-weight: normal;
+}
+.form-control{
+  font-size: 1.3em;
+  color: #080808;
+}
+textarea.form-control {
+    height: 135px;
+   /* margin-top: px;*/
+}
+
+.submit{
+  font-size: 1.1em;
+  float: right;
+  width: 150px;
+  background-color: transparent;
+  color: #fff;
+
+}
+
+body { padding-top:30px; }
+.widget .panel-body { padding:0px; }
+.widget .list-group { margin-bottom: 0; }
+.widget .panel-title { display:inline }
+.widget .label-info { float: right; }
+.widget li.list-group-item {border-radius: 0;border: 0;border-top: 1px solid #ddd;}
+.widget li.list-group-item:hover { background-color: rgba(86,61,124,.1); }
+.widget .mic-info { color: #666666;font-size: 11px; }
+.widget .action { margin-top:5px; }
+.widget .comment-text { font-size: 12px; }
+.widget .btn-block { border-top-left-radius:0px;border-top-right-radius:0px; }
+
+
+
+body {
+  padding-top: 70px;
+}
+.btn-grey{
+    background-color:#D8D8D8;
+  color:#FFF;
+}
+.rating-block{
+  background-color:#FAFAFA;
+  border:1px solid #EFEFEF;
+  padding:15px 15px 20px 15px;
+  border-radius:3px;
+}
+.bold{
+  font-weight:700;
+}
+.padding-bottom-7{
+  padding-bottom:7px;
+}
+
+.review-block{
+  background-color:#FAFAFA;
+  border:1px solid #EFEFEF;
+  padding:15px;
+  border-radius:3px;
+  margin-bottom:15px;
+}
+.review-block-name{
+  font-size:12px;
+  margin:10px 0;
+}
+.review-block-date{
+  font-size:12px;
+}
+.review-block-rate{
+  font-size:13px;
+  margin-bottom:15px;
+}
+.review-block-title{
+  font-size:15px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+.review-block-description{
+  font-size:13px;
+}
+
+.profile{
+  height:5px;
+  width:5px;
+}
+
+
+.marquee {
+    background: red;
+    white-space: nowrap;
+    -webkit-animation: rightThenLeft 4s linear;
+}
+
+
+</style>
+
+	</head>
+
+	<body style= "background-color: #ffd3b6; font-color: black; font-family: Helvetica Neue, sans-serif; letter-spacing: 1.5px; font-weight: 500;">
+		<header class = "header" style = "font-color: black; font-weight: 500; font-family: Helvetica Neue, sans-serif;">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" style = "margin-top: 50px;">
+			  <!-- Indicators -->
+			  <ol class="carousel-indicators">
+			    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+			    <li data-target="#myCarousel" data-slide-to="1"></li>
+			    <li data-target="#myCarousel" data-slide-to="2"></li>
+			    <li data-target="#myCarousel" data-slide-to="3"></li>
+			  </ol>
+
+			  <!-- Wrapper for slides -->
+			 <div class="carousel-inner">
+			    <div class="item active ">
+			      <img src="slider1.png" alt="slider1">
+			    </div>
+
+			    <div class="item">
+			      <img src="slider2.png" alt="slider2">
+			    </div>
+
+			    <div class="item">
+			      <img src="slider3.png" alt="slider3">
+			    </div>
+
+			    <div class="item">
+			      <img src="slider4.png" alt="slider4">
+			    </div>
+			  </div>
+
+			  <!-- Left and right controls -->
+			  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+			    <span class="glyphicon glyphicon-chevron-left"></span>
+			    <span class="sr-only">Previous</span>
+			  </a>
+			  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+			    <span class="glyphicon glyphicon-chevron-right"></span>
+			    <span class="sr-only">Next</span>
+			  </a>
+			</div>
+
+
+			<div class="wrapper" style = "color:red; font-weight: 300px; font-size: 50px;  font-family: Helvetica Neue, sans-serif;   font-family: Helvetica Neue, sans-serif;   letter-spacing: 1.5px; height:35px;">
+			<marquee behavior="alternate"><span class="marquee">SALE! SALE! SALE! SALE! SALE! SALE! SALE! SALE! SALE! SALE!</span></marquee>
+			</div>
+
+			<div class='pics_in_a_row' style = "height:350px; background-color: #dcedc1;">
+				    <div class="img1 mx-auto" >
+				      <a href="shorts"><img src="Fitness2.png"></a>
+				    </div>
+				    <div class="img2 mx-auto">
+				      <a href="modess"><img src="modess.png"></a>
+				    </div>
+				    <div class="img3 mx-auto">
+				      <a href="oil"><img src="oil.png"></a>
+				    </div>
+				    <div class="img4 mx-auto">
+				     <a href="lipstick"><img src="lipstick.png"></a>
+				    </div>
+				    <div class="img5 mx-auto">
+				      <a href="swim"><img src="swim.png"></a>
+				    </div>
+		    </div>
+
+		    <div class='pics_in_a_row' style = "height:400px; background-color: #dcedc1;">
+				    <div class='img7' >
+				      <a href="shampoo"><img src="shampoo.png"></a>
+				    </div>
+				    <div class='img2'>
+				      <a href="perfume"><img src="channel.png"></a>
+				    </div>
+				    <div class='img6'>
+				      <a href="dove"><img src="soap.png"></a>
+				    </div>
+				    <div class='img4'>
+				     <a href="lotion"><img src="lotion.png"></a>
+				    </div>
+
+		    </div>
+
+		    <div class = "banner">
+		    	<img src="banner1.png" class="img-responsive" alt="Cinque Terre" width="1700" height="236">
+
+		    </div>
+
+
+		    <div class = "footer">
+		    	<p style ="margin-left: 10px; margin-top: 10px;">GANDA KA TEH? PHILIPPINES - BUY AND SELL ONLINE</p>
+		    	<P style ="margin-left: 10px; font-size: 10px;">Ganda ka Teh? Philippines is a fun, free and trusted way to buy and sell instantly online. We are a leading mobile-first marketplace platform in Southeast Asia--Singapore, Malaysia, Thailand, Indonesia, Vietnam, and the Philippines and Taiwan. Join millions of others on Ganda ka Teh? to list products and shop for deals online. Shopping online on Ganda ka Teh? is safe and we make sure of it. Get the item you ordered or get your money back with Ganda ka Teh? Guarantee. Create and browse listings for free, at no extra charge. Join our Ganda ka Teh? community and start shopping today!</p>
+
+		    	<p style ="margin-left: 10px; margin-top: 20px;">BUYERS LOVE SHOPPING ON GANDA KA TEH?</p>
+		    	<P style ="margin-left: 10px; font-size: 10px;">Join Ganda ka teh? to find everything you need at the best prices. Shopping online at the Philippines’ best marketplace cannot get any easier. Ganda ka Teh? is a social marketplace where you can enjoy instant and personalized updates from your friends and favorite community members. If you spot great products or deals while shopping online, Ganda ka Teh? enables you to share these deals with your friends via a simple tap.
+				Buy the products you want in a worry-free manner. Refer to shop ratings and reviews to find trusted sellers easily. We value our safe online marketplace! With Ganda ka Teh? Guarantee, you will also get your money back if you did not get what you ordered.
+				Not sure what to buy? Our fresh hashtags allow you to stay up-to-date with trending products. Browse effortlessly through our product categories which include jewelry from women accessories like necklaces that is a perfect gift for moms, basic phone for your dad that you can find in mobile and accessories, look for the best stroller for your newborn, surprise the kids with new toys, games & collectibles, buy your sister the most volumizing or lengthening mascara or hair tie, you can never go wrong with buying a cap for your brother, get the most affordable envelope & letters, purchase flowers & plants that your auntie or grandparents will surely love, start your fitness journey with mma & boxing gloves, show love to your dog by giving it the bestdog essentials from the pet care collection and many more! While shopping, use our smart search or look through a range of personalized recommendations to find the perfect buy. Plus, enjoy additional benefits such as Free Shipping for selected products. Start shopping on Ganda ka Teh? now!</p>
+
+				<p style ="margin-left: 10px; margin-top: 20px;">ENJOY SPECIAL DEALS, SALES, PROMOS, AND DISCOUNTS ONLY ON Ganda ka Teh? PHILIPPINES</p>
+				<P style ="margin-left: 10px; font-size: 10px;">Online Shopping with Ganda ka Teh? Philippines is not only easy and safe, but it’s also tons of fun. Enjoy big sales like Orange Day, the 9.9 Shopping Day and the 11.11 Sale to score the biggest and best discounts and special prices on your favorite products. With special promotions from shops such as special voucher codes, buy one, take one deals and flash sales, to weekly offers like Saturday Special, Wicked Weekend, and Pixie’s Picks, you’re sure to become a true blue Ganda ka Teh?holic. Catch the Ganda ka Teh? fever with regular deals on gadgets and electronics, fashion, health and beauty, accessories, food, kids' essentials, lifestyle and more only on Ganda ka Teh? Philippines! Download the app on your mobile phone now.</p>
+
+				<p style ="margin-left: 10px; margin-top: 20px;">SELL ONLINE EFFORTLESSLY ON Ganda ka Teh?</p>
+				<P style ="margin-left: 10px; font-size: 10px;">Ganda ka Teh? provides the right tools to support all our sellers on our marketplace platform. List your products in less than 30 seconds. Sell better and get more exposure for your products by participating in our campaigns and promotions. Use Ganda ka Teh? Seller Centre to organize your products, track orders, manage customers and measure shop performance. Share your products easily on social media platforms, including Facebook, Twitter, and Instagram. You can even build up your online reputation by gathering positive ratings and reviews from your buyers. Ganda ka Teh? is completely free with no commissions or download fees, so join us and start selling today!</p>
+
+				<p style ="margin-left: 10px; margin-top: 20px;">Ganda ka Teh? FREE SHIPPING</p>
+				<p style ="margin-left: 10px; font-size: 10px;">Enjoy Free Shipping on Ganda ka Teh?! For buyers, shop to your heart’s content and enjoy lower prices for your purchases. For sellers, get your shipping fees reimbursed - selling can’t get any easier on Ganda ka Teh?</p>
+
+				<p style ="margin-left: 10px; margin-top: 20px;">WATCH OUT FOR Ganda ka Teh?’S BIG CAMPAIGNS</p>
+				<P style ="margin-left: 10px; font-size: 10px;">Ganda ka Teh?’s Big Double-double Campaigns are the annual events where you can get the best products at their lowest guaranteed price, huge discounts, promos, and more. Watch for Ganda ka Teh? 9.9 Super Shopping Day, known to be the biggest promo day Ganda ka Teh? always has. Shop at Ganda ka Teh? 10.10 Brands Festival for sitewide discounts and free shipping promos. And, of course, enjoy Ganda ka Teh? 11.11 Big Christmas Sale and Ganda ka Teh? 12.12 Big Christmas Sale Campaigns to meet your christmas shopping needs. Play Ganda ka Teh? games like Ganda ka Teh? Quiz and Ganda ka Teh? Shake to receive rewards, collect vouchers daily, and win tons of Ganda ka Teh? Coins. Stay tuned for the different free shipping voucher offers during these times!</p>
+		    </div>
+
+
+		</header>
+	</body>
+</html>
