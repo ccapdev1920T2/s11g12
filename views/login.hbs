@@ -1,0 +1,287 @@
+<html>
+	<head>
+		<Title> {{title}} </Title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel = "stylesheet" type = "text/css" href = "style.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+		<style>
+			:root {
+			  --form-height: 550px;
+			  --form-width: 900px;
+			  --left-color: #FFA4A4;
+			  --right-color: #96dbe2;
+			}
+
+			.regcontainer {
+			  width: var(--form-width);
+			  height: var(--form-height);
+			  position: relative;
+			  margin: auto;
+			  box-shadow: 2px 10px 40px rgba(22, 20, 19, 0.4);
+			  border-radius: 10px;
+			  margin-top: 50px;
+			  margin-bottom: 50px;
+			  padding:0px;
+			}
+			/*
+			----------------------
+			      Overlay
+			----------------------
+			*/
+			.overlay {
+			  width: 100%;
+			  height: 100%;
+			  position: absolute;
+			  z-index: 100;
+			  background-image: linear-gradient(
+			    to left,
+			    var(--left-color),
+			    var(--right-color)
+			  );
+			  border-radius: 10px;
+			  color: white;
+			  clip: rect(0, 450px, var(--form-height), 0);
+			}
+
+			.open-sign-up {
+			  animation: slideleft 1s linear forwards;
+			}
+
+			.open-sign-in {
+			  animation: slideright 1s linear forwards;
+			}
+
+			.overlay .sign-in,
+			.overlay .sign-up {
+			  /*  Width is 385px - padding  */
+			  --padding: 0px;
+			  width: calc(450px - var(--padding) * 2);
+			  height: 100%;
+			  display: flex;
+			  justify-content: center;
+			  flex-direction: column;
+			  align-items: center;
+			  padding: 0px var(--padding);
+			  text-align: center;
+			}
+
+			.overlay .sign-up {
+			  float: left;
+			}
+
+			.overlay h1 {
+			  margin: 0px 5px;
+			  font-size: 2.1rem;
+			}
+
+			.overlay p {
+			  margin: 20px 0px 30px;
+			  font-weight: 200;
+			}
+			/*
+			------------------------
+			      Buttons
+			------------------------
+			*/
+			.switch-button,
+			.control-button {
+			  display: block;
+			  margin-left: auto;
+			  margin-right: auto;
+			  width: 140px;
+			  height: 40px;
+			  font-size: 14px;
+			  text-transform: uppercase;
+			  background: none;
+			  border-radius: 20px;
+			  color: white;
+			}
+
+			.switch-button {
+			  border: 2px solid;
+			}
+
+			.control-button {
+			  border: none;
+			  margin-top: 15px;
+			}
+
+			.switch-button:focus,
+			.control-button:focus {
+			  outline: none;
+			}
+
+			.control-button.up {
+			  background-color: var(--left-color);
+			}
+
+			.control-button.in {
+			  background-color: var(--right-color);
+			}
+
+			/*
+			--------------------------
+			      Forms
+			--------------------------
+			*/
+			.form {
+			  width: 100%;
+			  height: 100%;
+			  position: absolute;
+			  border-radius: 10px;
+			}
+
+			.form .sign-in,
+			.form .sign-up {
+			  --padding: 0px;
+			  position: absolute;
+			  /*  Width is 100% - 385px - padding  */
+			  width: calc(var(--form-width) - 450px - var(--padding) * 2);
+			  height: 100%;
+			  display: flex;
+			  justify-content: center;
+			  flex-direction: column;
+			  align-items: center;
+			  padding: 0px var(--padding);
+			  text-align: center;
+			}
+
+			.form .sign-in {
+			  right: 0;
+			}
+
+			.form .sign-in h1 {
+			  color: var(--right-color);
+			  margin: 0;
+			}
+
+			#sign-in-form input,
+			#sign-up-form input {
+			  margin: 10px;
+			  font-size: 14px;
+			  padding: 10px;
+			  width: 300px;
+			  font-weight: 300;
+			  border: none;
+			  background-color: #e4e4e494;
+			  font-family: "Helvetica Neue", sans-serif;
+			  letter-spacing: 1.5px;
+			  padding-left: 20px;
+			}
+
+			#sign-in-form input::placeholder {
+			  letter-spacing: 1px;
+			}
+
+			.carousel-inner img {
+				margin: auto;
+			}
+		</style>
+	</head>
+
+<body style= "background-color: white; font-color: black; font-family: Helvetica Neue, sans-serif; letter-spacing: 1.5px; font-weight: 500;">
+		<header class = "header" style = "font-color: black; font-weight: 500; font-family: Helvetica Neue, sans-serif;">
+
+			<div id="myCarousel" class="carousel slide" data-ride="carousel" style="margin-top:50px;">
+				<!-- Indicators -->
+				<ol class="carousel-indicators">
+				    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				    <li data-target="#myCarousel" data-slide-to="1"></li>
+				    <li data-target="#myCarousel" data-slide-to="2"></li>
+				    <li data-target="#myCarousel" data-slide-to="3"></li>
+				</ol>
+
+			    <!-- Wrapper for slides -->
+				<div class="carousel-inner">
+				    <div class="item active ">
+				      	<img src="slider1.png" alt="slider1">
+				    </div>
+
+				    <div class="item">
+				      	<img src="slider2.png" alt="slider2">
+				    </div>
+
+				    <div class="item">
+				      	<img src="slider3.png" alt="slider3">
+				    </div>
+
+				    <div class="item">
+				      	<img src="slider4.png" alt="slider4">
+				    </div>
+				</div>
+
+				<!-- Left and right controls -->
+				<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+					<span class="glyphicon glyphicon-chevron-left"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="right carousel-control" href="#myCarousel" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right"></span>
+				    <span class="sr-only">Next</span>
+				</a>
+			</div>
+
+			<div class="regcontainer">
+		        <div class="overlay" id="overlay">
+			        <div class="sign-up" id="sign-up">
+			        	<a href="homepage"><img src = "logo.png"></a><hr>
+			            <h1> Don't have an account yet? </h1>
+			            <p> Enter your personal details and start a journey with us! </p>
+			            <a href="signup"><button class="switch-button" id="slide-left-button"> Sign Up </button></a>
+			        </div>
+		        </div>
+
+		        <div class="form">
+		            <div class="sign-in" id="sign-in-info">
+		            	<h1> Sign In </h1>
+		            	<form id="sign-in-form">
+		              		<input type="email" id="emailsi" placeholder="Email" required/>
+		              		<input type="password" id="passwordsi" placeholder="Password" required/>
+		              		<button class="control-button in" type="submit" name="signin" id="signin"> Sign In </button>
+		            	</form>
+		          	</div>
+				</div>
+			</div>
+		</header>
+
+
+      	<script>
+	      	$('#signin').click(function(){
+	      		var email = $('#emailsi').val();
+	      		var password = $('#passwordsi').val();
+
+	      		if(email!="" && password!="")
+	      		{
+					if(email=="wendell@gmail.com" && password=="123"){
+						window.open("profile");
+
+					}
+          else if(email=="kristal@gmail.com" && password=="123"){
+						window.open("profile");
+					}
+          else if(email=="jus@gmail.com" && password=="123"){
+						window.open("profile");
+					}
+          else if(email=="juts@gmail.com" && password=="123"){
+						window.open("profile");
+          }
+          else if(email=="daks@gmail.com" && password=="123"){
+						window.open("profile");
+          }
+					else
+						alert("User does not exist! Please create an account.");
+	      		}
+	      	});
+
+
+      	</script>
+	</body>
+</html>
