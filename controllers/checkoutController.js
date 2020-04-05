@@ -1,10 +1,10 @@
-
 const checkoutController = {
 
     getCheckout: function (req, res) {
-		res.render('checkout', {
-      	title: 'Checkout',
-    	});
+
+        res.render('checkout', {
+            title: 'CHECKOUT',
+        });
     }   
 }
 
