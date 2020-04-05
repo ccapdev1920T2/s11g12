@@ -1,3 +1,4 @@
+
 <html>
 	<head>
 		<Title> {{title}} </Title>
@@ -242,10 +243,10 @@
 		        <div class="form">
 		            <div class="sign-in" id="sign-in-info">
 		            	<h1> Sign In </h1>
-		            	<form id="sign-in-form">
-		              		<input type="email" id="emailsi" placeholder="Email" required/>
+		            	<form id="sign-in-form" method = "POST" action = "/login">
+		              		<input type="email" id="emailsi" name = "emailsi" placeholder="Email" required/>
 		              		<input type="password" id="passwordsi" placeholder="Password" required/>
-		              		<button class="control-button in" type="submit" name="signin" id="signin"> Sign In </button>
+		              		<button class="control-button in" type="submit" name="signin" id="signin" onlick = "/profile"> Sign In </button>
 		            	</form>
 		          	</div>
 				</div>
@@ -261,20 +262,20 @@
 	      		if(email!="" && password!="")
 	      		{
 					if(email=="wendell@gmail.com" && password=="123"){
-						window.open("profile");
+						window.open("/profile");
 
 					}
           else if(email=="kristal@gmail.com" && password=="123"){
-						window.open("profile");
+						window.open("/profile");
 					}
           else if(email=="jus@gmail.com" && password=="123"){
-						window.open("profile");
+						window.open("/profile");
 					}
           else if(email=="juts@gmail.com" && password=="123"){
-						window.open("profile");
+						window.open("/profile");
           }
           else if(email=="daks@gmail.com" && password=="123"){
-						window.open("profile");
+						window.open("/profile");
           }
 					else
 						alert("User does not exist! Please create an account.");
