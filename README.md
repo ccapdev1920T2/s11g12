@@ -26,7 +26,7 @@ npm init
 ```
 4. Run the command `npm install` to initialize and install all necessary modules used in the project.
 ```
-npm install express --save
+npm install
 ```
 
 5. We may now run our server. To do this, we run the command `node index.js`. Upon running the command, your Command Prompt should display the following statement:
@@ -54,17 +54,17 @@ http://localhost:3000/oil
 8. ### Navigation Bar
 There are multiple parts here in Navigation bar
 - Home
-  This is where you will be directed to the homepage
+  ..This is where you will be directed to the homepage
 - Conact Us
-  This is where you will be directed to a form where you can enter your
+  ..This is where you will be directed to a form where you can enter your
   name, email, mobile number, and the message that will be sent to the admin
 - Categories
-  Under this there are 4 main categories namely; Beauty,Fitness,Fashion,Health. And sub links
+  ..Under this there are 4 main categories namely; Beauty,Fitness,Fashion,Health. And sub links
   which are promos and new releases
 - User
-  This is where yoiu can see "Sign up/ Login" and "View Profile" when this dropdown is clicked. (Further details will be           below)
+  ..This is where yoiu can see "Sign up/ Login" and "View Profile" when this dropdown is clicked. (Further details will be           below)
 - My Cart
-  This is where you can view the user's products that are added in the cart.
+  ..This is where you can view the user's products that are added in the cart.
 
 9. ### Sign Up
 Let us first create a new user by clicking on sign up and Enter these as values:
@@ -78,7 +78,7 @@ Choose  photo: /public/img/vhino.jpg
 After this you will be directed to your profile
 
 10. ### Log In
-You can close the app an rerun it. On the navigation bar click on user then "Login / Sign up".
+You can close the app and rerun it. On the navigation bar click on user then "Login / Sign up".
 ```
 Email: wendell@gmail.com
 Password: 123
