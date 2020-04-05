@@ -16,6 +16,7 @@ const cartController = require('../controllers/cartController.js');
 const productController = require('../controllers/productController.js');
 const aboutusController = require('../controllers/aboutusController.js');
 const bossController = require('../controllers/bossController.js');
+const checkoutController = require('../controllers/checkoutController.js');
 
 
 const app = express();
@@ -37,6 +38,8 @@ app.get('/signup', signupController.getSignup);
 app.get('/profile', profileController.getProfile);
 
 app.get('/contactus', contactusController.getContactUs);
+
+app.get('/checkout', checkoutController.getCheckout);
 
 app.get('/unavailable', unavailableController.getUnavailable);
 
