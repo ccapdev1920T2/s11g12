@@ -39,7 +39,8 @@ app listening at port 3000
 http://localhost:3000/homepage
 ```
 
-7. You can click on the products you can see on the homepage such as the promos. Once cliked
+7. ### Products
+You can click on the products you can see on the homepage such as the promos. Once cliked
 it will redirect you to the page of the product itself, where you can go and see some details. 
 You can also access these products by:
 ```
@@ -47,6 +48,17 @@ http://localhost:3000/shorts
 http://localhost:3000/modess
 http://localhost:3000/oil
 
+```
+
+8. ### Navigation Bar
+
+9. ### Footer
+Here you can access different information about the website such as "About us", "Contact Us", "Our boses" and etc.
+You can also directly access these by:
+```
+http://localhost:3000/aboutus
+http://localhost:3000/boss
+http://localhost:3000/contactus
 ```
 
 
