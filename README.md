@@ -21,14 +21,39 @@ git clone https://github.com/ccapdev1920T2/s11g12
 ```
 2. Open Command Prompt
 3. Navigate to the project folder - the folder containing the contents of the cloned or downloaded repository.
+```
+npm init
+```
 4. Run the command `npm install` to initialize and install all necessary modules used in the project.
+```
+npm install express --save
+```
 
 5. We may now run our server. To do this, we run the command `node index.js`. Upon running the command, your Command Prompt should display the following statement:
 ```
 app listening at port 3000
 ```
 
-6. Let's test our web application. Go to the link below to access the web application:
+6. Let's test our web application. Go to the link below to access the web application homepage:
 ```
-http://localhost:3000/
+http://localhost:3000/homepage
 ```
+
+7. You can click on the products you can see on the homepage such as the promos. Once cliked
+it will redirect you to the page of the product itself, where you can go and see some details. 
+You can also access these products by:
+```
+http://localhost:3000/shorts
+http://localhost:3000/modess
+http://localhost:3000/oil
+
+```
+
+
+
+## Authors
+
+* **Elderwell Ramos** - *Initial work*
+* **Justine Fernandez** - *Initial work*
+* **Kristal Ambrosio** - *Initial work*
+
