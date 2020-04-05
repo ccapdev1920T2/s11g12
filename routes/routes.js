@@ -16,7 +16,7 @@ const cartController = require('../controllers/cartController.js');
 const productController = require('../controllers/productController.js');
 const aboutusController = require('../controllers/aboutusController.js');
 const bossController = require('../controllers/bossController.js');
-
+const checkoutController = require('../controllers/checkoutController.js');
 
 const app = express();
 
@@ -53,6 +53,8 @@ app.get('/promos', promosController.getPromos);
 app.get('/newrelease', newreleaseController.getNewRelease);
 
 app.get('/cart', cartController.getCart);
+
+app.get('/checkout', checkoutController.getCheckout);
 
 // HOMEPAGE PRODUCTS
 app.get('/shorts', productController.getShorts);
