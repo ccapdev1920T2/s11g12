@@ -54,8 +54,12 @@ http://localhost:3000/oil
 8. ### Navigation Bar
 There are multiple parts here in Navigation bar
 - Home
+  This is where you will be directed to the homepage
 - Conact Us
+  This is where you will be directed to a form where you can enter your
+  name, email, mobile number, and the message that will be sent to the admin
 - Categories
+  Under this there are 4 main categories namely; ###Beauty, ### Fitness, ### Fashion, ### Health.
 - User
 - My Cart
 
