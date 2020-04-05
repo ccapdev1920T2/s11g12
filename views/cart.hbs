@@ -1,0 +1,122 @@
+<html>
+    <head>
+        <Title>Ganda Ka Teh?</Title>
+		<link rel = "stylesheet" type = "text/css" href = "style.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+    </head>
+
+<body style= "background-color: #ffd3b6; font-color: black; font-family: Helvetica Neue, sans-serif; letter-spacing: 1.5px; font-weight: 500;">
+		<header class = "header" style = "font-color: black; font-weight: 500; font-family: Helvetica Neue, sans-serif;">
+		</header>
+
+        <hr><hr><br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-md-offset-1">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th class="text-center">Price</th>
+                                <th class="text-center">Total</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td class="col-sm-8 col-md-6">
+                                    <div class="media">
+                                        <a class="thumbnail pull-left" href="dove"> <img class="media-object" src="soap.png" style="width: 72px; height: 72px;"> </a>
+                                        <div class="media-body"><br>
+                                            <h4 class="media-heading" style="text-align: center;"><a href="dove"> Dove Soap </a></h4>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-sm-1 col-md-1" style="text-align: center;">
+                                    <strong>2</strong>
+                                </td>
+                                <td class="col-sm-2 col-md-2 text-center"><strong>59.00</strong></td>
+                                <td class="col-sm-2 col-md-2 text-center"><strong>118.00</strong></td>
+                                <td class="col-sm-2 col-md-2">
+                                    <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove </button></td>
+                            </tr>
+
+                            <tr>
+                                <td class="col-md-6">
+                                    <div class="media">
+                                        <a class="thumbnail pull-left" href="lotion"> <img class="media-object" src="lotion.png" style="width: 72px; height: 72px;"> </a>
+                                        <div class="media-body"><br>
+                                            <h4 class="media-heading" style="text-align: center;"><a href="lotion"> Love, Beauty and Planet Body Lotion </a></h4>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="col-md-1" style="text-align: center;">
+                                    <strong>1</strong>
+                                </td>
+                                <td class="col-md-2 text-center"><strong>59.00</strong></td>
+                                <td class="col-md-2 text-center"><strong>59.00</strong></td>
+                                <td class="col-md-2">
+                                    <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove </button>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>   </td>
+                                <td><h5>Subtotal</h5></td>
+                                <td class="text-right"><h5><strong>177.00</strong></h5></td>
+                            </tr>
+
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>   </td>
+                                <td><h5>Estimated shipping</h5></td>
+                                <td class="text-right"><h5><strong>75.00</strong></h5></td>
+                            </tr>
+
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>   </td>
+                                <td><h3>Total</h3></td>
+                                <td class="text-right"><h3><strong>252.00</strong></h3></td>
+                            </tr>
+                            <tr>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>   </td>
+                                <td>
+                                <a href="homepage"><button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
+                                </button></td>
+                                <td>
+                                <button type="button" class="btn btn-success" id="checkout">
+                                    Checkout <span class="glyphicon glyphicon-play"></span>
+                                </button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        $('#checkout').click(function(){
+            alert("Payments under construction. Thank you for your patience! ^o^");
+        });
+    </script>
+</html>
