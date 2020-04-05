@@ -26,7 +26,7 @@ npm init
 ```
 4. Run the command `npm install` to initialize and install all necessary modules used in the project.
 ```
-npm install express --save
+npm install
 ```
 
 5. We may now run our server. To do this, we run the command `node index.js`. Upon running the command, your Command Prompt should display the following statement:
