@@ -18,6 +18,8 @@ const aboutusController = require('../controllers/aboutusController.js');
 const bossController = require('../controllers/bossController.js');
 const checkoutController = require('../controllers/checkoutController.js');
 
+
+
 const app = express();
 
 app.get('/', controller.getHomepage);
@@ -28,7 +30,7 @@ app.get('/aboutus', aboutusController.getAboutUs);
 
 app.get('/boss', bossController.getBoss);
 
-app.get('/login', loginController.getProfile);
+app.get('/login', loginController.getLogin);
 
 app.post('/login', loginController.postLogin);
 
@@ -131,6 +133,7 @@ app.get('/victoria', productController.getVictoria);
 
 app.get('/sunglasses', productController.getSunglasses);
 // END OF NEW RELEASE PRODUCTS
+
 
 
 // exports the object `app` (defined above)
