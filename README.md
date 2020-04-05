@@ -7,11 +7,11 @@ Each folder and file in this repository is properly documented. You may read the
 - [public](https://github.com/ccapdev1920T2/s11g12/tree/master/public) - This folder contains static assets such as css, js, and image files.
 - [routes](https://github.com/ccapdev1920T2/s11g12/tree/master/routes) - This folder contains files which describes the response of the server for each HTTP method request to a specific path in the server.
 - [views](https://github.com/ccapdev1920T2/s11g12/tree/master/views) - This folder contains all hbs files to be rendered when requested from the server.
-- [add_data.js](https://github.com/ccapdev1920T2/s11g12/blob/master/add_data.js) - This script creates the database and inserts 5 user details in the collection `users`.
-- [add_products.js](https://github.com/ccapdev1920T2/s11g12/blob/master/add_products.js) - This script creates the database and inserts 5 user details in the collection `products`.
-- [add_reviews.js](https://github.com/ccapdev1920T2/s11g12/blob/master/add_reviews.js) - This script creates the database and inserts 5 user details in the collection `reviews`.
-- [add_transaction.js](https://github.com/ccapdev1920T2/s11g12/blob/master/add_transaction.js) - This script creates the database and inserts 5 user details in the collection `transaction`.
-- [addtocart.js](https://github.com/ccapdev1920T2/s11g12/blob/master/addtocart.js) - This script creates the database and inserts 5 user details in the collection `cart`.
+- [add_data.js](https://github.com/ccapdev1920T2/s11g12/blob/master/add_data.js) - This script creates the database and inserts user details in the collection `users`.
+- [add_products.js](https://github.com/ccapdev1920T2/s11g12/blob/master/add_products.js) - This script creates the database and inserts product details in the collection `products`.
+- [add_reviews.js](https://github.com/ccapdev1920T2/s11g12/blob/master/add_reviews.js) - This script creates the database and inserts reviews in the collection `reviews`.
+- [add_transaction.js](https://github.com/ccapdev1920T2/s11g12/blob/master/add_transaction.js) - This script creates the database and inserts transaction details in the collection `transaction`.
+- [addtocart.js](https://github.com/ccapdev1920T2/s11g12/blob/master/addtocart.js) - This script creates the database and inserts product details to the cart in the collection `cart`.
 - [index.js](https://github.com/ccapdev1920T2/s11g12/blob/master/index.js) - The main entry point of the web application.
 
 ## Follow the steps below to set-up  this repository:
@@ -41,7 +41,8 @@ http://localhost:3000/homepage
 
 7. ### Products
 You can click on the products you can see on the homepage such as the promos. Once cliked
-it will redirect you to the page of the product itself, where you can go and see some details. 
+it will redirect you to the page of the product itself, where you can go and see some details.
+You can also type in the quanity of products you wish to have added on the cart or buy directly.
 You can also access these products by:
 ```
 http://localhost:3000/shorts
@@ -51,6 +52,13 @@ http://localhost:3000/oil
 ```
 
 8. ### Navigation Bar
+There are multiple parts here in Navigation bar
+- Home
+- Conact Us
+- Categories
+- User
+- My Cart
+
 
 9. ### Footer
 Here you can access different information about the website such as "About us", "Contact Us", "Our boses" and etc.
