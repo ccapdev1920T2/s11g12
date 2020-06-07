@@ -3,49 +3,32 @@
 var mongoose = require('mongoose');
 
 // defines the schema for collection `users`
-var UserSchema = new mongoose.Schema({
-    firstname: {
+var ProdSchema = new mongoose.Schema({
+    name: {
         type: String,
         required: true
     },
-    lastname: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true
-    },
-    num: {
-        type: String,
-        default: ''
-    },
-    state: {
-        type: String,
-    },
-    address: {
-        type: String
-    },
-    hash: {
-        type: String,
-        required: true
-    },
-    salt: {
-        type: String,
-        required: true
-    },
+    type: {
+		type: String
+	},
     photo: {
 		type: String
     },
-    subtotal: {
+    price: {
+        type: Number
+    },
+    reviews: {
         type: Number,
         default: 0
     },
-    total: {
+    sold: {
         type: Number,
         default: 0
     },
-    admin: {
+    desc: {
+        type: String
+    },
+    rating: {
         type: Number,
         default: 0
     }
@@ -57,4 +40,4 @@ var UserSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `users` -> plural of the argument `User`
 */
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Product', ProdSchema);

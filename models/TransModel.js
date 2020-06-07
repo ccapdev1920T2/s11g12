@@ -3,49 +3,43 @@
 var mongoose = require('mongoose');
 
 // defines the schema for collection `users`
-var UserSchema = new mongoose.Schema({
-    firstname: {
-        type: String,
-        required: true
-    },
-    lastname: {
-        type: String,
-        required: true
-    },
+var TransSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true
     },
-    num: {
-        type: String,
-        default: ''
-    },
-    state: {
-        type: String,
-    },
-    address: {
+    id: {
         type: String
     },
-    hash: {
-        type: String,
-        required: true
+    amount: {
+        type: Number
     },
-    salt: {
-        type: String,
-        required: true
-    },
-    photo: {
+    items: [{
 		type: String
+    }],
+    photos: [{
+		type: String
+    }],
+    prices: [{
+		type: Number
+    }],
+    dateOrd: {
+        type: Date
     },
-    subtotal: {
+    dateRec: {
+        type: Date
+    },
+    dateToday: {
+        type: Date
+    },
+    cancelled: {
         type: Number,
         default: 0
     },
-    total: {
+    returned: {
         type: Number,
         default: 0
     },
-    admin: {
+    delivered: {
         type: Number,
         default: 0
     }
@@ -57,4 +51,4 @@ var UserSchema = new mongoose.Schema({
     This model executes CRUD operations
     to collection `users` -> plural of the argument `User`
 */
-module.exports = mongoose.model('User', UserSchema);
+module.exports = mongoose.model('Transaction', TransSchema);

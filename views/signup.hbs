@@ -177,9 +177,74 @@
 			#sign-in-form input::placeholder {
 			  letter-spacing: 1px;
 			}
+			.input{
+				margin: 10px;
+				font-size: 14px;
+				padding: 10px;
+				width: 300px;
+				font-weight: 300;
+				border: none;
+				background-color: #e4e4e494;
+				font-family: "Helvetica	 Neue", sans-serif;
+				letter-spacing: 1.5px;
+				margin-left: auto;
+				margin-right: auto;
+			}
 
 			.carousel-inner img {
 				margin: auto;
+			}
+			.label{
+				background-color: #e4e4e494;
+				font-family: "Helvetica Neue", sans-serif; text-align:left;
+			}
+			.banner1{
+				font-size: 14px;
+				width: 300px;
+				font-weight: 300;
+				font-family: "Helvetica	 Neue", sans-serif;
+				letter-spacing: 1.5px;
+				padding-top: 20px;
+				text-align: Center;
+				height: 60px;
+				width: 20%;
+				border-left: 3px solid red;
+				position: absolute;
+				top: 375px;
+				right: 0px;
+				background-color: #e4e4e494;		
+			}
+			.banner2{
+				font-size: 14px;
+				width: 300px;
+				font-weight: 300;
+				font-family: "Helvetica	 Neue", sans-serif;
+				letter-spacing: 1.5px;
+				padding-top: 20px;
+				text-align: Center;
+				height: 60px;
+				width: 20%;
+				border-left: 3px solid red;
+				position: absolute;
+				top: 450px;
+				right: 0px;
+				background-color: #e4e4e494;		
+			}
+			.banner3{
+				font-size: 14px;
+				width: 300px;
+				font-weight: 300;
+				font-family: "Helvetica	 Neue", sans-serif;
+				letter-spacing: 1.5px;
+				padding-top: 20px;
+				text-align: Center;
+				height: 60px;
+				width: 20%;
+				border-left: 3px solid red;
+				position: absolute;
+				top: 525px;
+				right: 0px;
+				background-color: #e4e4e494;		
 			}
 		</style>
 	</head>
@@ -225,7 +290,17 @@
 				    <span class="sr-only">Next</span>
 				</a>
 			</div>
-
+			<div id="banner2" class='banner2' hidden>
+				<p>Password must be at least 8 characters.</p>	
+			</div>
+			<br><br><br><br>
+			<div id="banner1" class='banner1' hidden>
+				<p>A User with that email already exists.</p>	
+			</div>
+			<div id="banner3" class='banner3' hidden>
+				<p>Passwords do not match.</p>	
+			</div>
+			
 
 			<div class="regcontainer">
 		        <div class="overlay" id="overlay">
@@ -240,14 +315,32 @@
 		        <div class="form">
 		            <div class="sign-up" id="sign-up-info">
 			            <h1> Create Account </h1>
-			            <form id="sign-up-form">
-			              <input type="text" name="namesu" id="namesu" placeholder="Name" required/>
-			              <input type="email" name="emailsu" id="emailsu" placeholder="Email" required/>
-			              <input type="password" name="passwordsu" id="passwordsu" placeholder="Password" required/>
-			              <input type="password" name="cpasswordsu" id="cpasswordsu" placeholder="Re-enter Password" required/>
-			              <label for="img"> Choose a photo for your profile! </label>
-			              <input type="file" name="img" id="img" accept="image/*"/ style="margin-left:75px;">
-			              <button class="control-button up" type="submit" name="signup" id="signup"> Sign Up </button>
+			            <form method="POST" enctype="multipart/form-data" id="sign-up-form">
+							<input type="text" name="namesu1" id="namesu1" placeholder="First Name" required/>
+							<input type="text" name="namesu2" id="namesu2" placeholder="Last Name" required/>
+							<input type="email" name="email" id="email" placeholder="Email" required/>	
+							{{!-- <select name="region" id="region" placeholder="Region" required>
+							<option value='Metro Manila'>Metro Manila</option>
+							<option value='North Luzon'>North Luzon</option>
+							<option value='South Luzon'>South Luzon</option>
+							<option value='Visayas'>Visayas</option>
+							<option value='Mindanao'>Mindanao</option> --}}
+							<div class="input">
+								<select class='form-control' id='region' name="region">
+									<option>Metro Manila</option>
+									<option>North Luzon</option>
+									<option>South Luzon</option>
+									<option>Visayas</option>
+									<option>Mindanao</option>
+								</select>
+							</div>
+							
+							<input type="password" name="password" id="password" placeholder="Password" onkeyup='check();' required/>
+							<input type="password" name="cpassword" id="cpassword" placeholder="Re-enter Password" onkeyup='check();' required/>
+							<label for="img"> Choose a photo for your profile! </label>
+							<input type="file" name="img" id="img" accept="image/*"/ style="margin-left:75px;">
+							<input type="text" name="photo" id="photo" hidden/>
+							<button class="control-button up" type="submit" name="signup" id="signup"> Sign Up </button>
 			            </form>
 		          	</div>
 				</div>
@@ -256,24 +349,63 @@
 
 
       	<script>
-	      	$('#signup').click(function(){
-	      		var name = $('#namesu').val();
-	      		var email = $('#emailsu').val();
-	      		var password = $('#passwordsu').val();
-	      		var cpassword = $('#cpasswordsu').val();
+			  $('#img').change(function(){
+				  var photo = document.getElementById("img").files.item(0).name;
+				  document.getElementById("photo").value = photo
+			  })
 
-	      		if(name!="" && email!="" && password!="" && cpassword!="")
-	            {
-	                if(password == cpassword)
-	                {
-	                	window.open("profile");
-	                }
-	                else
-	                {
-	                    alert("Password does not match!");
-	                }
-	            }
-	      	});
+	      	var check = function(){
+				  if(document.getElementById('password').value.length >= 8)
+				  {
+					  $('#banner2').prop('hidden', true);
+					  $('#password').css('background-color', '#e4e4e494');
+					  if (document.getElementById('password').value != document.getElementById('cpassword').value)
+					  {
+						$('#banner3').prop('hidden', false);
+						$('#cpassword').css('background-color', 'red');
+						document.getElementById('signup').disabled = true;
+					  }
+					  else{
+						$('#banner3').prop('hidden', true);
+						$('#cpassword').css('background-color', '#e4e4e494');
+						document.getElementById('signup').disabled = false;
+					  }
+				  }
+				  else{
+					  $('#banner2').prop('hidden', false);
+					  $('#password').css('background-color', 'red');
+					  document.getElementById('signup').disabled = true;
+				  }
+				  if(($('#banner2').prop('hidden') && $('#banner1').prop('hidden')) && $('#banner3').prop('hidden')){
+						document.getElementById('signup').disabled = false;
+				  }
+				  else{
+					  document.getElementById('signup').disabled = true;
+				  }
+			  }
+
+			  $('#email').keyup(function(){
+				  var email = $(this).val();
+				  $.get('/checkEmail', {email: email}, function(result){
+					  if(result.email === email){
+						  $('#banner1').prop('hidden', false);
+						  $('#email').css('background-color', 'red');
+						  document.getElementById('signup').disabled = true;
+					  }
+					  else{
+						   $('#banner1').prop('hidden', true);
+						  $('#email').css('background-color', '#e4e4e494');
+						  document.getElementById('signup').disabled = false;
+					  }
+					  if(($('#banner2').prop('hidden') && $('#banner1').prop('hidden')) && $('#banner3').prop('hidden')){
+						document.getElementById('signup').disabled = false;
+					  }
+					  else{
+					  document.getElementById('signup').disabled = true;
+				  		}
+				  		
+				  })
+			  })
       	</script>
 	</body>
 </html>

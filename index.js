@@ -4,11 +4,21 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const handlebars = require('handlebars');
 const routes = require('./routes/routes.js');
+const bodyparser = require('body-parser');
+const cookieparser = require('cookie-parser');
+const moment = require('moment');
 
 // Creates the express application
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
+const db = require('./models/db.js');
+const data = require('./adddata.js');
 
+app.use(bodyparser.urlencoded({
+	extended: true
+}));
+app.use(cookieparser());
+app.use(bodyparser.json());
 /**
   Creates an engine called "hbs" using the express-handlebars package.
 **/
@@ -21,9 +31,35 @@ app.engine( 'hbs', exphbs({
   helpers: {
     cap: function(text) { 
       return text.toUpperCase(); 
+    },
+    if_eq: function(a, b, opts) {
+      if (a == b) {
+          return opts.fn(this);
+      } else {
+          return opts.inverse(this);
+      }
+    },
+    if_gr: function(a, b, opts) {
+      if (a.setDate(a.getDate()+ 1) >= b.getDate()) {
+          return opts.fn(this);
+      } else {
+          return opts.inverse(this);
+      }
+    },
+    dateFormat: function(date){
+      moment.suppressDeprecationWarnings = true;
+      return moment(date).format("MMM DD, YYYY");
     }
   }
 }));
+
+handlebars.registerHelper('if_deq', function(a, b, opts) {
+  if (a.getDate() == b.getDate()) {
+      return opts.fn(this);
+  } else {
+      return opts.inverse(this);
+  }
+});
 
 // Setting the view engine to the express-handlebars engine we created
 app.set('view engine', 'hbs');
@@ -34,6 +70,8 @@ app.use('/', routes);
 app.use(express.static('images'));
 app.use(express.static('public'));
 
+db.connect();
+data.addData();
 // Listening to the port provided
 app.listen(port, function() {
   console.log('App listening at port '  + port)
