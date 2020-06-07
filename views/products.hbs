@@ -88,81 +88,56 @@
 			</div>
 
 
-        <h2 style ="margin-left: 20px;">{{title}} </h2>
+        <h2 style ="margin-left: 20px;"><p id="pname">{{name}}</p> </h2>
 
-        <p style ="margin-left: 20px;"> {{this.desc}} </p>
+        <p style ="margin-left: 20px;"> {{desc}} </p>
         <div class = "custom_div">
-        <img id="myImg" src= "{{this.img}}" alt="buckethat" style="width:100%;max-width:300px">
-        <!-- The Modal -->
-        <div id="myModal" class="modal">
-          <span class="close">&times;</span>
-          <img class="modal-content" id="img01">
-          <div id="caption"></div>
-        </div>
+        <img id="myImg" src= "{{photo}}" alt="buckethat" style="width:100%;max-width:300px">
 
         <div id="two">
-          <h3>{{rating}}        {{numsold}}</h3>
-          <h4 style="color:Red; text-align:center; font-size: 40px; background: lightpink;"> {{price}}</h3>
-          <p style = "color:black; font-size: 15; text-align:left">Shipping Fee:</p>
+          <h3>{{reviews}} Rating(s)&nbsp;&nbsp;|&nbsp;&nbsp;{{sold}} Sold</h3>
+          <h4 style="color:Red; text-align:center; font-size: 40px; background: lightpink;"> <p id="price">{{price}}</p></h3>
+          {{#if_eq region "Metro Manila"}}
+            <p style = "font-size: 15; text-align:left"><strong>Shipping Fee: Metro Manila - 75</strong></p>
+          {{/if_eq}}
+          {{#if_eq region "North Luzon"}}
+            <p style = "font-size: 15; text-align:left"><strong>Shipping Fee: North Luzon - 100</strong></p>
+          {{/if_eq}}
+          {{#if_eq region "South Luzon"}}
+            <p style = "font-size: 15; text-align:left"><strong>Shipping Fee: South Luzon - 100</strong></p>
+          {{/if_eq}}
+          {{#if_eq region "Visayas"}}
+            <p style = "font-size: 15; text-align:left"><strong>Shipping Fee: Visayas - 130</strong></p>
+          {{/if_eq}}
+          {{#if_eq region "Mindanao"}}
+            <p style = "font-size: 15; text-align:left"><strong>Shipping Fee: Mindanao - 170</strong></p>
+          {{/if_eq}}
           <p style = "font-size: 15; text-align:left">Free Shipping Minimum Order of Php 200 </p>
-          <br>
-
-        <form style= "height: 125">
-            <div class="form-group" style= "height: 125">
-              <label for="sel1">Shipping To:</label>
-              <select class="form-control" id="sel1" style = "background:lavenderblush">
-                <option>Metro Manila - Php 75</option>
-                <option>Mindanao - Php 170</option>
-                <option>North Luzon - Php 100</option>
-                <option>South Luzon - Php 100</option>
-                <option>Visayas - Php 130</option>
-              </select>
-            </div>
-        </form>
+          
 
         <form style= "height: 70">
         <div class="number" style= "height: 2">
           <label for="sel1">Quantity:</label>
-          <span class="minus">-</span>
-          <input type="text" value="1"/>
-          <span class="plus">+</span>
+          <input type="number" value="1" min="1" step="1" onkeydown="return false" id="quantity"/>
         </div>
         </form>
 
-          <a href="cart"><button  class="btn btn-primary" style ="background-color:#ff8b94; width:100px; height:30px;">Buy Now!</button> </a>
-          <button id="myBtn" name="myname" value="Successfully Added to cart!" onclick="alert(this.value)" class="btn btn-default">Add to Cart</button>
+          <a href="#" id="cartlink"><button  class="btn btn-primary" style ="background-color:#ff8b94; width:100px; height:30px;">Buy Now!</button> </a>
+          <button type="button" id="myBtn" class="btn btn-default" id="addcart" onclick="showalert()">Add to Cart</button>
+          <button type="button" id="myWish" class="btn btn-primary" id="addwish" onclick="showalert2()" style ="background-color:#ff8b94; height:30px;">Add to Wishlist</button>
+          <div class="container" id="cartalert" hidden>
+              <div class="alert alert-success fade in">
+                <strong>Success!</strong> Item successfully added to cart.
+              </div>
+          </div>
+          <div class="container" id="wishalert" hidden>
+              <div class="alert alert-warning fade in">
+                <strong>Success!</strong> Item successfully added to wishlist.
+              </div>
+          </div>
+          
         </div>
-
-      <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-
-        // Get the image and insert it inside the modal - use its "alt" text as a caption
-        var img = document.getElementById("myImg");
-        var modalImg = document.getElementById("img01");
-        var captionText = document.getElementById("caption");
-        img.onclick = function(){
-          modal.style.display = "block";
-          modalImg.src = this.src;
-          captionText.innerHTML = this.alt;
-        }
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-          modal.style.display = "none";
-        }
-      </script>
-
-      <script src="addminus.js"></script>
-
-      <script>
-      function myFunction() {
-        document.getElementById("myBtn").value = "newButtonValue";
-      }
-      </script>
+        
 		</header>
        <!-- Fixed navbar --> <!-- Review part -->
 
@@ -171,23 +146,9 @@
     <div class="row">
       <div class="col-sm-3">
         <div class="rating-block">
+        <button class='btn btn-danger' style ="background-color:#ff8b94; width:100px; height:30px;" id="addrev" onclick="addreview()">Add Review</button>
           <h4>Average user rating</h4>
-          <h2 class="bold padding-bottom-7">4.3 <small>/ 5</small></h2>
-          <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-warning btn-sm" aria-label="Left Align">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-          </button>
-          <button type="button" class="btn btn-default btn-grey btn-sm" aria-label="Left Align">
-            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-          </button>
+          <h2 class="bold padding-bottom-7">{{rating}} <small>/ 5</small></h2>
         </div>
       </div>
       <div class="col-sm-3">
@@ -198,12 +159,12 @@
           </div>
           <div class="pull-left" style="width:180px;">
             <div class="progress" style="height:9px; margin:8px 0;">
-              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" style="width: 1000%">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="5" aria-valuemin="0" aria-valuemax="5" id="width5">
               <span class="sr-only">80% Complete (danger)</span>
               </div>
             </div>
           </div>
-          <div class="pull-right" style="margin-left:10px;">1</div>
+          <div class="pull-right" style="margin-left:10px;"><p id="no5">0</p></div>
         </div>
         <div class="pull-left">
           <div class="pull-left" style="width:35px; line-height:1;">
@@ -211,12 +172,12 @@
           </div>
           <div class="pull-left" style="width:180px;">
             <div class="progress" style="height:9px; margin:8px 0;">
-              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" style="width: 80%">
+              <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="4" aria-valuemin="0" aria-valuemax="5" id="width4">
               <span class="sr-only">80% Complete (danger)</span>
               </div>
             </div>
           </div>
-          <div class="pull-right" style="margin-left:10px;">1</div>
+          <div class="pull-right" style="margin-left:10px;"><p id="no4">0</p></div>
         </div>
         <div class="pull-left">
           <div class="pull-left" style="width:35px; line-height:1;">
@@ -224,12 +185,12 @@
           </div>
           <div class="pull-left" style="width:180px;">
             <div class="progress" style="height:9px; margin:8px 0;">
-              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" style="width: 60%">
+              <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="3" aria-valuemin="0" aria-valuemax="5" id="width3"> 
               <span class="sr-only">80% Complete (danger)</span>
               </div>
             </div>
           </div>
-          <div class="pull-right" style="margin-left:10px;">0</div>
+          <div class="pull-right" style="margin-left:10px;"><p id="no3">0</p></div>
         </div>
         <div class="pull-left">
           <div class="pull-left" style="width:35px; line-height:1;">
@@ -237,12 +198,12 @@
           </div>
           <div class="pull-left" style="width:180px;">
             <div class="progress" style="height:9px; margin:8px 0;">
-              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" style="width: 40%">
+              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="2" aria-valuemin="0" aria-valuemax="5" id="width2">
               <span class="sr-only">80% Complete (danger)</span>
               </div>
             </div>
           </div>
-          <div class="pull-right" style="margin-left:10px;">0</div>
+          <div class="pull-right" style="margin-left:10px;"><p id="no2">0</p></div>
         </div>
         <div class="pull-left">
           <div class="pull-left" style="width:35px; line-height:1;">
@@ -250,49 +211,251 @@
           </div>
           <div class="pull-left" style="width:180px;">
             <div class="progress" style="height:9px; margin:8px 0;">
-              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" style="width: 20%">
+              <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="1" aria-valuemin="0" aria-valuemax="5" id="width1">
               <span class="sr-only">80% Complete (danger)</span>
               </div>
             </div>
           </div>
-          <div class="pull-right" style="margin-left:10px;">0</div>
+          <div class="pull-right" style="margin-left:10px;"><p id="no1">0</p></div>
         </div>
       </div>
+      
     </div>
+  <div id="myModal" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
 
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Oops!</h4>
+							</div>
+							<div class="modal-body">
+								<p>You must login/sign up first before adding products into your cart.</p>
+							</div>
+							<div class="modal-footer">
+								<a href="/login" class="btn btn-success">Login/Sign Up</a>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+
+						</div>
+						</div>
+            <div id="myModal2" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Oops!</h4>
+							</div>
+							<div class="modal-body">
+								<p>You must login/sign up first before adding products into your wishlist.</p>
+							</div>
+							<div class="modal-footer">
+								<a href="/login" class="btn btn-success">Login/Sign Up</a>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+
+						</div>
+						</div>
+            <div id="noreview" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Oops!</h4>
+							</div>
+							<div class="modal-body">
+								<p>You must login/sign up first before adding a review for this product.</p>
+							</div>
+							<div class="modal-footer">
+								<a href="/login" class="btn btn-success">Login/Sign Up</a>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+
+						</div>
+						</div>
+            <div id="yesreview" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Write Review</h4>
+							</div>
+							<div class="modal-body">
+								<p>Write a review for this product.</p>
+                <form method="POST">
+                <div class="panel-heading">
+                        <label for="stars">Rating:</label>
+                        <span class="glyphicon glyphicon-star" id="star1" style="color: rgb(231, 231, 59);"></span>
+                        <span class="glyphicon glyphicon-star" id="star2"></span>
+                        <span class="glyphicon glyphicon-star" id="star3"></span>
+                        <span class="glyphicon glyphicon-star" id="star4"></span>
+                        <span class="glyphicon glyphicon-star" id="star5"></span>
+                        <span id='starCount' hidden>1</span>
+                        <input type="number" min="1" max="5" id='stars' name="stars" value="1" hidden><br>
+                        <input type="text" name="title" id="title" placeholder="Title">
+                        <textarea class="form-control" rows="5" id="content" placeholder="Write a review for this product" name="content" required></textarea>
+                        <input type="text" name="pnametext" id="pnametext" hidden>
+                    </div>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="btn btn-success" id="submitrev">Submit!</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+							</div>
+							</div>
+
+						</div>
+						</div>
+            <div id="donereview" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Oops!</h4>
+							</div>
+							<div class="modal-body">
+								<p>You may only write one (1) review per product.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+						</div>
+						</div>
+            <div id="cantreview" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Oops!</h4>
+							</div>
+							<div class="modal-body">
+								<p>You cannot write a review for this product since you have not bought this product.</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+						</div>
+						</div>
     <!-- ACTUAL USER REVIEWS -->
     <div class="row">
       <div class="col-sm-7">
         <hr/>
         <div class="review-block">
-        {{#each reviews}} 
+          <input type="number" id='ratingave' name="ratingave" value="0" hidden>
+        {{#each review}} 
           <div class="row">
             <div class="col-sm-3">
-              <img src="{{this.icon}}" class="img-rounded" style = "width:60; height:60;">
+              <img src="{{this.photo}}" class="img-rounded" style = "width:60; height:60;">
               <div class="review-block-name"><a href="#">{{this.name}}</a></div>
-                <div class="review-block-date">{{this.date}}<br/>{{this.time}}</div>
+                <div class="review-block-date">{{dateFormat this.date}}</div>
               </div>
               <div class="col-sm-9">
                 <div class="review-block-rate">
-                  <input type="hidden" id="selected_rating" name="selected_rating" value="" required="required">
-                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                  <input type="number" class='ratingdisp' value="{{rating}}" hidden>
+                  {{#if_eq rating 1}}
+                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                      <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                    </button>
+                    <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </button>
-                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </button>
-                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align">
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </button>
-                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </button>
-                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align">
+                  {{/if_eq}}
+                  {{#if_eq rating 2}}
+                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
                     <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
                   </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  {{/if_eq}}
+                  {{#if_eq rating 3}}
+                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  {{/if_eq}}
+                  {{#if_eq rating 4}}
+                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-default btn-grey btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  {{/if_eq}}
+                  {{#if_eq rating 5}}
+                    <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  <button type="button" class="btn btn-warning btn-xs" aria-label="Left Align" style="pointer-events: none;">
+                    <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                  </button>
+                  {{/if_eq}}
                 </div>
-                <div class="review-block-title">{{this.title}}</div>
-                <div class="review-block-description">{{this.desc}}</div>
+                <div class="review-block-title"><strong>{{this.title}}</strong></div>
+                <div class="review-block-description">{{this.message}}</div>
               </div>
             </div>
             <hr/>
@@ -301,6 +464,194 @@
         </div>
       </div>
     </div> <!-- /END REVIEW SECTION -->
+  <script>
+    $(document).ready(function(){
+      var numbers = document.getElementsByClassName('ratingdisp');
+      var sum = 0;
+      numbers =  Array.prototype.slice.call(numbers)
+      numbers.sort((a,b)=>Number(a)>=Number(b)?1:-1)
+    for(var i = 0; i< numbers.length; i++)
+    {
+      sum += numbers[i].value;
+    }
+    ave = sum / numbers.length;
+    $('#ratingave').val(ave);
 
+    var no1 = 0;
+    var no2 = 0;
+    var no3 = 0;
+    var no4 = 0;
+    var no5 = 0;
+    for(var i = 0; i< numbers.length; i++)
+    {
+      if(numbers[i].value == 1)
+      {
+        no1++;
+      }
+      if(numbers[i].value == 2)
+      {
+        no2++;
+      }
+      if(numbers[i].value == 3)
+      {
+        no3++;
+      }
+      if(numbers[i].value == 4)
+      {
+        no4++;
+      }
+      if(numbers[i].value == 5)
+      {
+        no5++;
+      }
+    }
+    $('#no1').text(no1);
+    $('#no2').text(no2);
+    $('#no3').text(no3);
+    $('#no4').text(no4);
+    $('#no5').text(no5);
+
+    width1 = (no1 / numbers.length) * 100 + '%';
+    width2 = (no2 / numbers.length) * 100 + '%';
+    width3 = (no3 / numbers.length) * 100 + '%';
+    width4 = (no4 / numbers.length) * 100 + '%';
+    width5 = (no5 / numbers.length) * 100 + '%';
+
+    $('#width1').css('width', width1);
+    $('#width2').css('width', width2);
+    $('#width3').css('width', width3);
+    $('#width4').css('width', width4);
+    $('#width5').css('width', width5);
+    })
+
+
+    var showalert = function(){
+      $.get('/checkLogged', {logged: 1}, function(result){
+        if(result.logged === 1){
+          var pname = $('#pname').text();
+          var price = $('#price').text();
+          var photo = $('#myImg').attr('src');
+          var quantity = $('#quantity').val()
+          $.get('/addCart', { item: pname, price: price, photo: photo, quantity: quantity});
+          $("#cartalert").fadeTo(2000, 500).slideUp(500, function() {
+            $("#cartalert").slideUp(500);
+          })
+          $('#quantity').val(1)
+        }
+        else{
+          $('#myModal').modal('toggle');
+        }
+      })
+    }
+    var showalert2 = function(){
+      $.get('/checkLogged', {logged: 1}, function(result){
+        if(result.logged === 1){
+          var pname = $('#pname').text();
+          var price = $('#price').text();
+          var photo = $('#myImg').attr('src');
+          $.get('/addWishlist', { item: pname, price: price, photo: photo});
+          $("#wishalert").fadeTo(2000, 500).slideUp(500, function() {
+            $("#wishalert").slideUp(500);
+          })
+        }
+        else{
+          $('#myModal2').modal('toggle');
+        }
+      })
+    }
+    var addreview = function(){
+      $.get('/checkLogged', {logged: 1}, function(result){
+        if(result.logged === 1){
+          pname = $('#pname').text();
+          $.get('/checkReview', {item: pname}, function(revresult){
+            $.get('/checkBought', {name: pname}, function(hisresult){
+              if(hisresult.name === pname){
+                if(revresult.item === pname){
+                $('#donereview').modal('toggle');
+                }
+                else{
+                  $('#yesreview').modal('toggle');
+                  $('#pnametext').val(pname)
+                }
+              }
+              else{
+                 $('#cantreview').modal('toggle');
+              }
+              
+            })
+            
+          })  
+        }
+        else{
+          $('#noreview').modal('toggle');
+        }
+      })
+    }
+    
+    $('#star1').hover(function(){
+        $(this).css('color', 'rgb(231, 231, 59)');
+        $('#star2').css('color', 'black');
+        $('#star3').css('color', 'black');
+        $('#star4').css('color', 'black');
+        $('#star5').css('color', 'black');
+        $('#starCount').text('1');
+        $("#stars").val('1');
+    });
+    $('#star2').hover(function(){
+        $('#star1').css('color', 'rgb(231, 231, 59)');
+        $(this).css('color', 'rgb(231, 231, 59)');
+        $('#star3').css('color', 'black');
+        $('#star4').css('color', 'black');
+        $('#star5').css('color', 'black');
+        $('#starCount').text('2');
+        $("#stars").val('2');
+    });
+    $('#star3').hover(function(){
+        $('#star1').css('color', 'rgb(231, 231, 59)');
+        $('#star2').css('color', 'rgb(231, 231, 59)');
+        $(this).css('color', 'rgb(231, 231, 59)');
+        $('#star4').css('color', 'black');
+        $('#star5').css('color', 'black');
+        $('#starCount').text('3');
+        $("#stars").val('3');
+    });
+    $('#star4').hover(function(){
+        $('#star1').css('color', 'rgb(231, 231, 59)');
+        $('#star2').css('color', 'rgb(231, 231, 59)');
+        $('#star3').css('color', 'rgb(231, 231, 59)');
+        $(this).css('color', 'rgb(231, 231, 59)');
+        $('#star5').css('color', 'black');
+        $('#starCount').text('4');
+        $("#stars").val('4');
+    });
+    $('#star5').hover(function(){
+        $('#star1').css('color', 'rgb(231, 231, 59)');
+        $('#star2').css('color', 'rgb(231, 231, 59)');
+        $('#star3').css('color', 'rgb(231, 231, 59)');
+        $('#star4').css('color', 'rgb(231, 231, 59)');
+        $(this).css('color', 'rgb(231, 231, 59)');
+        $('#starCount').text('5');
+        $("#stars").val('5');
+    });
+    $('#cartlink').click(function(){
+      $.get('/checkLogged', {logged: 1}, function(result){
+        if(result.logged === 1){
+          var pname = $('#pname').text();
+          var price = $('#price').text();
+          var photo = $('#myImg').attr('src');
+          var quantity = $('#quantity').val()
+          $.get('/addCart', { item: pname, price: price, photo: photo, quantity: quantity});
+          var href = window.location.href
+          var n = href.lastIndexOf('/');
+          var res = href.slice(0, n);
+          res = res+ "/cart";
+          window.location.replace(res)
+        }
+        else{
+          $('#myModal').modal('toggle');
+        }
+      })
+    })
+  </script>
 	</body>
 </html>

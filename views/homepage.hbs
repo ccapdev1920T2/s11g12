@@ -33,6 +33,13 @@
 .img6 { flex: 1.2; }
 .img7 { flex: 1; }
 
+.img {
+    float: left;
+    width:  350px;
+    height: 350px;
+    object-fit: cover;
+}
+
 
 
 /* Aaaand just some general styling. */
@@ -367,7 +374,7 @@ body {
 
 </style>
 
-	</head>
+</head>
 
 	<body style= "background-color: #ffd3b6; font-color: black; font-family: Helvetica Neue, sans-serif; letter-spacing: 1.5px; font-weight: 500;">
 		<header class = "header" style = "font-color: black; font-weight: 500; font-family: Helvetica Neue, sans-serif;">
@@ -415,42 +422,18 @@ body {
 			<marquee behavior="alternate"><span class="marquee">SALE! SALE! SALE! SALE! SALE! SALE! SALE! SALE! SALE! SALE!</span></marquee>
 			</div>
 
-			<div class='pics_in_a_row' style = "height:350px; background-color: #dcedc1;">
-				    <div class="img1 mx-auto" >
-				      <a href="shorts"><img src="Fitness2.png"></a>
+			<div class='pics_in_a_row' style = "height:400px; background-color: #dcedc1;">
+        {{#each product}}
+				    <div class="img " >
+              <br><br>
+				      <a href="/products" class='name'><center><strong style="color: red;">{{this.name}}</strong></center><img src="{{this.photo}}"></a>
 				    </div>
-				    <div class="img2 mx-auto">
-				      <a href="modess"><img src="modess.png"></a>
-				    </div>
-				    <div class="img3 mx-auto">
-				      <a href="oil"><img src="oil.png"></a>
-				    </div>
-				    <div class="img4 mx-auto">
-				     <a href="lipstick"><img src="lipstick.png"></a>
-				    </div>
-				    <div class="img5 mx-auto">
-				      <a href="swim"><img src="swim.png"></a>
-				    </div>
+        {{/each}}
 		    </div>
-
-		    <div class='pics_in_a_row' style = "height:400px; background-color: #dcedc1;">
-				    <div class='img7' >
-				      <a href="shampoo"><img src="shampoo.png"></a>
-				    </div>
-				    <div class='img2'>
-				      <a href="perfume"><img src="channel.png"></a>
-				    </div>
-				    <div class='img6'>
-				      <a href="dove"><img src="soap.png"></a>
-				    </div>
-				    <div class='img4'>
-				     <a href="lotion"><img src="lotion.png"></a>
-				    </div>
-
-		    </div>
-
+        
+        <br>
 		    <div class = "banner">
-		    	<img src="banner1.png" class="img-responsive" alt="Cinque Terre" width="1700" height="236">
+		    	<center><img src="banner1.png" class="img-responsive" alt="Cinque Terre" width="1700" height="236"></center>
 
 		    </div>
 
@@ -479,5 +462,12 @@ body {
 
 
 		</header>
+    <script>
+      $(document).on("click", ".name", function(){
+        var name = $(this).children().children().text();
+        var href = $(this).attr('href') + "?name=" + name;
+        $(this).attr('href', href) 
+      })
+    </script>
 	</body>
 </html>

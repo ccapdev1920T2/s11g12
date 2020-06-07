@@ -1,0 +1,92 @@
+0<html>
+    <head>
+        <Title>Ganda Ka Teh?</Title>
+		<link rel = "stylesheet" type = "text/css" href = "style.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <!------ Include the above in your HEAD tag ---------->
+        <style>
+            .tabletest{
+                height: 400px;
+                overflow-y:auto;
+				overflow-x: hidden;
+                
+            }
+        </style>
+    </head>
+
+<body style= "background-color: #ffd3b6; font-color: black; font-family: Helvetica Neue, sans-serif; letter-spacing: 1.5px; font-weight: 500;">
+		<header class = "header" style = "font-color: black; font-weight: 500; font-family: Helvetica Neue, sans-serif;">
+		</header>
+
+        <hr><hr><br>
+        <div class="container ">
+            <div class="row">
+                <div class="col-sm-12 col-md-10 col-md-offset-1 tabletest">
+                    <input type="text" value="{{region}}" id="region" name="region" hidden>
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th> </th>
+                                <th> </th>
+                                <th class="text-center">Price</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {{#each item}}
+                            <tr>
+                                <td class="col-sm-8 col-md-6">
+                                    <div class="media">
+                                        <a class="thumbnail pull-left" href="/products"> <img class="media-object image" src="{{lookup ../photo @index}}" style="width: 72px; height: 72px;"> </a>
+                                        <div class="media-body"><br>
+                                            <h4 class="media-heading" style="text-align: center;"><a href="/product" class="name"><p>{{this}}</p></a></h4>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td class="col-sm-2 col-md-2 text-center"><strong><p class="price">{{lookup ../price @index}}</p></strong></td>
+                                <td class="col-sm-2 col-md-2">
+                                    <button type="button" class="btn btn-success remove"><span class="glyphicon glyphicon-remove"></span> Add to cart </button></td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                    </table>
+                </div>
+                <div class="  col-md-offset-1"></div>
+                    <center><a href="/homepage"><button type="button" class="btn btn-default">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span> Back to Homepage
+                                </button>
+                                </center>
+                </div>
+                <br>
+            </div>
+        </div>
+
+        <script>
+            $('.name').click(function(){
+                var name = $(this).children().text();
+                var href = $(this).attr('href') + 's?name=' + name
+                $(this).attr('href', href)
+            })
+
+            $(".remove").click(function(){
+                var name = $(this).parent().siblings('.col-sm-8').children().children('.media-body').children().children().children().text()
+                var photo = $(this).parent().siblings('.col-sm-8').children().children().children('img').attr('src')
+                var price = $(this).parent().siblings('.text-center').children().children().text();
+                $.get('/addCart', { item: name, price: price, photo: photo});
+                $.get('/deleteWishlist', {item: name});
+                $(this).parent().parent().remove()
+            })
+        </script>
+    </body>
+</html>

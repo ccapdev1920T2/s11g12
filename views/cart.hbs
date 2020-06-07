@@ -1,4 +1,4 @@
-<html>
+0<html>
     <head>
         <Title>Ganda Ka Teh?</Title>
 		<link rel = "stylesheet" type = "text/css" href = "style.css">
@@ -11,6 +11,14 @@
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <!------ Include the above in your HEAD tag ---------->
+        <style>
+            .tabletest{
+                height: 400px;
+                overflow-y:auto;
+				overflow-x: hidden;
+                
+            }
+        </style>
     </head>
 
 <body style= "background-color: #ffd3b6; font-color: black; font-family: Helvetica Neue, sans-serif; letter-spacing: 1.5px; font-weight: 500;">
@@ -18,89 +26,84 @@
 		</header>
 
         <hr><hr><br>
-        <div class="container">
+        <div class="container ">
             <div class="row">
-                <div class="col-sm-12 col-md-10 col-md-offset-1">
-                    <table class="table table-hover">
+                <div class="col-sm-12 col-md-10 col-md-offset-1 tabletest">
+                    <input type="text" value="{{region}}" id="region" name="region" hidden>
+                    <table class="table table-hover ">
                         <thead>
                             <tr>
                                 <th>Product</th>
-                                <th>Quantity</th>
+                                <th> </th>
+                                <th> </th>
                                 <th class="text-center">Price</th>
-                                <th class="text-center">Total</th>
                                 <th> </th>
                             </tr>
                         </thead>
 
                         <tbody>
+                            {{#each item}}
                             <tr>
                                 <td class="col-sm-8 col-md-6">
                                     <div class="media">
-                                        <a class="thumbnail pull-left" href="dove"> <img class="media-object" src="soap.png" style="width: 72px; height: 72px;"> </a>
+                                        <a class="thumbnail pull-left" href="/product"> <img class="media-object image" src="{{lookup ../photo @index}}" style="width: 72px; height: 72px;"> </a>
                                         <div class="media-body"><br>
-                                            <h4 class="media-heading" style="text-align: center;"><a href="dove"> Dove Soap </a></h4>
+                                            <h4 class="media-heading" style="text-align: center;"><a href="/product" class="name"><p>{{this}}</p></a></h4>
                                         </div>
                                     </div>
                                 </td>
-
-                                <td class="col-sm-1 col-md-1" style="text-align: center;">
-                                    <strong>2</strong>
-                                </td>
-                                <td class="col-sm-2 col-md-2 text-center"><strong>59.00</strong></td>
-                                <td class="col-sm-2 col-md-2 text-center"><strong>118.00</strong></td>
+                                <td></td>
+                                <td></td>
+                                <td class="col-sm-2 col-md-2 text-center"><strong><p class="price">{{lookup ../price @index}}</p></strong></td>
                                 <td class="col-sm-2 col-md-2">
-                                    <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove </button></td>
+                                    <button type="button" class="btn btn-danger remove"><span class="glyphicon glyphicon-remove"></span> Remove </button></td>
                             </tr>
-
-                            <tr>
-                                <td class="col-md-6">
-                                    <div class="media">
-                                        <a class="thumbnail pull-left" href="lotion"> <img class="media-object" src="lotion.png" style="width: 72px; height: 72px;"> </a>
-                                        <div class="media-body"><br>
-                                            <h4 class="media-heading" style="text-align: center;"><a href="lotion"> Love, Beauty and Planet Body Lotion </a></h4>
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <td class="col-md-1" style="text-align: center;">
-                                    <strong>1</strong>
-                                </td>
-                                <td class="col-md-2 text-center"><strong>59.00</strong></td>
-                                <td class="col-md-2 text-center"><strong>59.00</strong></td>
-                                <td class="col-md-2">
-                                    <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span> Remove </button>
-                                </td>
-                            </tr>
-
+                            {{/each}}
+                            </tbody>
+                    </table>
+                </div>
+                <div class="col-sm-12 col-md-10 col-md-offset-1"></div>
+                     <table class="table">
+                        <tbody>
                             <tr>
                                 <td>   </td>
                                 <td>   </td>
                                 <td>   </td>
-                                <td><h5>Subtotal</h5></td>
-                                <td class="text-right"><h5><strong>177.00</strong></h5></td>
+                                <td>   </td>
+                                <td class="text-right"><h5>Subtotal</h5></td>
+                                
+                                <td ><h5><strong><p id="sub">0</p></strong></h5></td>
+                                
                             </tr>
 
                             <tr>
                                 <td>   </td>
                                 <td>   </td>
                                 <td>   </td>
-                                <td><h5>Estimated shipping</h5></td>
-                                <td class="text-right"><h5><strong>75.00</strong></h5></td>
+                                <td>   </td>
+                                <td class="text-right"><h5>Shipping Fee</h5></td>
+                                
+                                <td ><h5><strong><p id="ship"></p></strong></h5></td>
+                                
                             </tr>
 
                             <tr>
                                 <td>   </td>
                                 <td>   </td>
                                 <td>   </td>
-                                <td><h3>Total</h3></td>
-                                <td class="text-right"><h3><strong>252.00</strong></h3></td>
+                                <td>   </td>
+                                <td class="text-right"><h3>Total</h3></td>
+                                
+                                <td ><h3><strong><p id="total"></p></strong></h3></td>
                             </tr>
                             <tr>
                                 <td>   </td>
                                 <td>   </td>
                                 <td>   </td>
+                                <td>   </td>
+                                
                                 <td>
-                                <a href="homepage"><button type="button" class="btn btn-default">
+                                <a href="/homepage"><button type="button" class="btn btn-default pull-right">
                                     <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
                                 </button></td>
                                 <td>
@@ -113,5 +116,123 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            $(document).ready(function(){
+                var price = document.getElementsByClassName('price');
+                var sub = 0;
+                for(var i=0; i< price.length; i++){
+                    sub += Number(price[i].innerHTML);
+                }
+                $('#sub').text(sub);
+                if(Number($('#sub').text()) == 0){
+                    document.getElementById('checkout').disabled = true;
+                }
+                else{
+                    document.getElementById('checkout').disabled = false;
+                }
+                var region = $('#region').val();
+                if(region == 'Metro Manila'){
+                    if(Number($('#sub').text()) < 200)
+                    $('#ship').text(75)
+                    else
+                    $('#ship').text(0)
+                }
+                if(region == 'North Luzon'){
+                     if(Number($('#sub').text()) < 200)
+                     $('#ship').text(100)
+                     else
+                    $('#ship').text(0)
+                }
+                if(region == 'South Luzon'){
+                     if(Number($('#sub').text()) < 200)
+                     $('#ship').text(100)
+                     else
+                    $('#ship').text(0)
+                }
+                if(region == 'Visayas'){
+                     if(Number($('#sub').text()) < 200)
+                     $('#ship').text(130)
+                     else
+                    $('#ship').text(0)
+                }
+                if(region == 'Mindanao'){
+                     if(Number($('#sub').text()) < 200)
+                     $('#ship').text(170)
+                     else
+                    $('#ship').text(0)
+                }
+                var total = Number($('#ship').text()) + sub;
+                $('#total').text(total)
+
+                $(document).on('click', '.remove', function(){
+                    var minprice = Number($(this).parent().siblings('.text-center').children().children().text());
+                    var minsub = Number($('#sub').text());
+                    var mintotal = Number($('#total').text());
+                    var newsub = minsub - minprice;
+                    $('#sub').text(newsub);
+                    $(this).parent().parent().remove();
+                    if(Number($('#sub').text()) == 0){
+                        document.getElementById('checkout').disabled = true;
+                    }
+                    else{
+                        document.getElementById('checkout').disabled = false;
+                    }
+                    var region = $('#region').val();
+                if(region == 'Metro Manila'){
+                    if(Number($('#sub').text()) < 200)
+                    $('#ship').text(75)
+                    else
+                    $('#ship').text(0)
+                }
+                if(region == 'North Luzon'){
+                     if(Number($('#sub').text()) < 200)
+                     $('#ship').text(100)
+                     else
+                    $('#ship').text(0)
+                }
+                if(region == 'South Luzon'){
+                     if(Number($('#sub').text()) < 200)
+                     $('#ship').text(100)
+                     else
+                    $('#ship').text(0)
+                }
+                if(region == 'Visayas'){
+                     if(Number($('#sub').text()) < 200)
+                     $('#ship').text(130)
+                     else
+                    $('#ship').text(0)
+                }
+                if(region == 'Mindanao'){
+                     if(Number($('#sub').text()) < 200)
+                     $('#ship').text(170)
+                     else
+                    $('#ship').text(0)
+                }
+                var newtot = newsub + Number($('#ship').text());
+                $('#total').text(newtot);
+                if(Number($('#sub').text()) == 0){
+                    document.getElementById('checkout').disabled = true;
+                }
+                else{
+                    document.getElementById('checkout').disabled = false;
+                }
+                var pname = $(this).parent().siblings('.col-sm-8').children().children().siblings('.media-body').children().children().children().text();
+                $.get('/deleteCart', {item: pname});
+            })
+
+            $('#checkout').click(function(){
+                var sub = Number($('#sub').text());
+                var total = Number($('#total').text());
+                $.get('/getTotal', {sub: sub, total: total})
+            })
+
+            $('.name').click(function(){
+                var name = $(this).children().text();
+                var href = $(this).attr('href') + 's?name=' + name
+                $(this).attr('href', href)
+            })
+            })
+        </script>
     </body>
 </html>

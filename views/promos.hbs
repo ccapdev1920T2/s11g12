@@ -20,6 +20,10 @@
 				height: 50px;
 			}
 
+			.carousel-inner img {
+				margin: auto;
+				}
+
 			.promos {
 				font-family: Blippo, fantasy;
 				text-align: center;
@@ -160,20 +164,20 @@
         <p class="buynow">HOT DEALS! HOT DEALS! HOT DEALS! HOT DEALS! HOT DEALS! HOT DEALS! HOT DEALS!</p>
         </span>
 
+				<center>
 				<div class="container1">
 				  <div class="row">
 				    <div class="col-md-12">
 				      <div class="carousel slide multi-item-carousel" id="theCarousel">
 				        <div class="carousel-inner">
 				          <div class="item active">
-				            <div class="col-xs-4"><a href="/unavailable"><img src="{{this.prod1}}"></a></div>
+				            <div class="col-xs-4 mx-auto"><a href="/products" class="name"><center><strong style="color: red;">Bucket Hat</strong></center><img src="buckethat.png"></a></div>
 				          </div>
+						  {{#each products}}
 				          <div class="item">
-				            <div class="col-xs-4"><a href="/unavailable"><img src="{{this.prod1}}" class="img-responsive"></a></div>
+				            <div class="col-xs-4 mx-auto"><a href="/products" class="name"><center><strong style="color: red;">{{this.name}}</strong></center><img src="{{this.photo}}"></a></div>
 				          </div>
-				          <div class="item">
-				            <div class="col-xs-4"><a href="/unavailable"><img src="{{this.prod1}}" class="img-responsive"></a></div>
-				          </div>
+						  {{/each}}
 				        </div>
 				        <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
 				        <a class="right carousel-control" href="#theCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
@@ -181,8 +185,10 @@
 				    </div>
 				  </div>
 				</div>
+				</center>
 				<br>
 				<br>
+				
 
 		<script type="text/javascript">
 			// Instantiate the Bootstrap carousel
@@ -205,6 +211,11 @@
 					$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
 				}
 			});
+			$(document).on("click", ".name", function(){
+        var name = $(this).children().children().text();
+        var href = $(this).attr('href') + "?name=" + name;
+        $(this).attr('href', href) 
+      })
 		</script>
 	</body>
 </html>

@@ -10,7 +10,6 @@
 
 		<!-- Latest compiled JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="/controllers/profileController.js"></script>
 
 		<style>
 			.avatar {
@@ -25,6 +24,38 @@
 				justify-content: center;
 			}
 
+			table.scroll {
+    	 width: 30%;  /* Optional */
+    	 border-collapse: collapse;
+    	border-spacing: 0;
+}
+
+	table.scroll tbody,
+	table.scroll thead { display: block; }
+
+	thead tr th { 
+		height: 30px;
+		line-height: 30px;
+		/* text-align: left; */
+	}
+
+	table.scroll tbody {
+		height: 300px;
+		overflow-y: auto;
+		overflow-x: hidden;
+	}
+
+
+	tbody td, thead th {
+		/* width: 20% /* Optional */
+		border-right: 1px solid black;
+		/* white-space: nowrap; */
+	}
+
+	tbody td:last-child, thead th:last-child {
+		border-right: none;
+	}
+
 			.avatar img {
 				width: 100%;
 				border-radius: 50%;
@@ -38,12 +69,90 @@
 
 			.tab-pane{
 				padding-top: 20px;
+				height: 250px;
+			}
+
+			.here{
+				overflow-y:auto;
+				overflow-x: hidden;
+			}
+
+			.modal-body{
+				overflow-y:auto;
+				overflow-x: hidden;
+				height: 600px;
 			}
 
 			#customers {
 				font-family: "Helvetica Neue", sans-serif;
 				border-collapse: collapse;
 				max-width: 100%;
+			}
+
+			.banner2{
+				font-size: 14px;
+				width: 300px;
+				font-weight: 300;
+				font-family: "Helvetica	 Neue", sans-serif;
+				letter-spacing: 1.5px;
+				padding-top: 20px;
+				text-align: Center;
+				height: 60px;
+				width: 20%;
+				border-left: 3px solid red;
+				position: absolute;
+				top: 50px;
+				right: 0px;
+				background-color: white;		
+			}
+			.banner3{
+				font-size: 14px;
+				width: 300px;
+				font-weight: 300;
+				font-family: "Helvetica	 Neue", sans-serif;
+				letter-spacing: 1.5px;
+				padding-top: 20px;
+				text-align: Center;
+				height: 60px;
+				width: 20%;
+				border-left: 3px solid red;
+				position: absolute;
+				top: 125px;
+				right: 0px;
+				background-color: white;		
+			}
+
+			.banner1{
+				font-size: 14px;
+				width: 300px;
+				font-weight: 300;
+				font-family: "Helvetica	 Neue", sans-serif;
+				letter-spacing: 1.5px;
+				padding-top: 20px;
+				text-align: Center;
+				height: 60px;
+				width: 20%;
+				border-left: 3px solid red;
+				position: absolute;
+				top: 200px;
+				right: 0px;
+				background-color: white;		
+			}
+
+			.banner6{
+				font-size: 14px;
+				width: 500px;
+				font-weight: 300;
+				font-family: "Helvetica	 Neue", sans-serif;
+				letter-spacing: 1.5px;
+				padding-top: 20px;
+				text-align: Center;
+				height: 150px;
+				width: 20%;
+				position: absolute;
+				top: 475px;
+				right: left 0px;
+				background-color: white;		
 			}
 
 			#customers td, #customers th {
@@ -128,6 +237,23 @@
 			.portlet .tabbable-line > .tab-content {
 				padding-bottom: 0;
 			}
+			.banner{
+				border-left: 3px solid green;
+				font-size: 14px;
+				width: 300px;
+				font-weight: 300;
+				font-family: "Helvetica	 Neue", sans-serif;
+				letter-spacing: 1.5px;
+				padding-top: 10px;
+				text-align: Center;
+				height: 60px;
+				width: 20%;
+				position: absolute;
+				top: 75px;
+				right: 0px;
+				background-color: white;		
+			}
+
 		</style>
 	</head>
 
@@ -135,24 +261,44 @@
 		<header class = "header" style = "font-color: black; font-weight: 500; font-family: Helvetica Neue, sans-serif;">
 
 		</header>
-
 		<hr><hr><br>
+		<div id="banner" class='banner' hidden>
+			<p>Click on the products to view transaction details and order status.</p>
+			
+		</div>
+		<div id="banner1" class='banner1' hidden>
+				<p>A User with that email already exists.</p>	
+			</div>
+		<div id="banner2" class='banner2' hidden>
+				<p>Password must be at least 8 characters.</p>	
+			</div>
+			<div id="banner4" class='banner2' hidden>
+				<p>New password cannot be old password.</p>	
+			</div>
+			<div id="banner3" class='banner3' hidden>
+				<p>Passwords do not match.</p>	
+			</div>
+
+			<div id="banner6" class='banner6'>
+				<p>For day simulation purposes</p><br>
+				Current date:{{#if transaction}} {{dateFormat transaction.0.dateToday}}<p id="curdate" hidden>{{ transaction.0.dateToday}}</p>{{/if}}<br>
+				<button class="btn btn-info" id="nextday">Next Day</button>	
+			</div>
 		<div class="row" style="margin:60px; align-items: center;">
 		  	<div class="row">
 				<div class="col-sm-3"><!--left col-->
 				   <div class="text-center">
-					  <img src={{profpic}} class="avatar rounded-circle mr-3" alt="avatar" width="40%" height="40%">
-					  <h6> Update your profile picture </h6>
-					  <input type="file" class="text-center center-block file-upload">
+					  <img src='{{photo}}' class="avatar rounded-circle mr-3" alt="avatar" width="40%" height="40%">
 				  </div><br>
 
 				  <!--USER DETAILS-->
 				  <ul class="list-group">
 					  <li class="list-group-item text-muted"> DETAILS <i class="fa fa-dashboard fa-1x"></i></li>
-					  <li class="list-group-item text-right" id="dname"><span class="pull-left"><strong> Name </strong></span> {{name}} </li>
+					  <li class="list-group-item text-right" id="dname"><span class="pull-left"><strong> Name </strong></span> {{firstname}} {{lastname}} </li>
 					  <li class="list-group-item text-right" id="demail"><span class="pull-left"><strong> Email </strong></span> {{email}} </li>
-					  <li class="list-group-item text-right" id="dphone"><span class="pull-left"><strong> Phone </strong></span> {{num}}</li>
-					  <li class="list-group-item text-right" id="daddress"><span class="pull-left"><strong> Address </strong></span> {{address}} </li>
+					  <li class="list-group-item text-right" id="dphone"><span class="pull-left"><strong> Phone </strong></span>{{#if num}} {{num}} {{else}}N/A {{/if}}</li>
+					  <li class="list-group-item text-right" id="daddress"><span class="pull-left"><strong> Address </strong></span>{{#if address}} {{address}} {{else}}N/A {{/if}}</li>
+					  <li class="list-group-item text-right" id="dregion"><span class="pull-left"><strong> Region </strong></span>{{#if region}} {{region}} {{else}}N/A {{/if}}</li>
 					</ul>
 
 			  	</div><!--/col-3-->
@@ -160,10 +306,10 @@
 				<div class="col-sm-9">
 					<div class="tabbable-panel">
 						<div class="tabbable-line">
-							<ul class="nav nav-tabs">
-								<li class="active"><a data-toggle="tab" href="#edit"> Edit </a></li>
-								<li><a data-toggle="tab" href="#purchases"> My Purchases </a></li>
-								<li><a data-toggle="tab" href="#orderhistory"> My Order History </a></li>
+							<ul class="nav nav-tabs" id="myTab">
+								<li class="active"><a data-toggle="tab" href="#edit" id='edits'> Edit </a></li>
+								<li><a data-toggle="tab" href="#purchases" id='purchase'> My Purchases </a></li>
+								<li><a data-toggle="tab" href="#orderhistory" id='ordhis'> My Order History </a></li>
 							</ul>
 						</div>
 					</div>
@@ -172,18 +318,25 @@
 					<div class="tab-content">
 						<div class="tab-pane active" id="edit">
 							<hr>
-								<form class="form" id="registrationForm">
+								<form class="form" id="registrationForm" method="POST" accept="/profile">
 									<div class="form-group">
 										<div class="col-xs-6">
-											<label for="name"><h4> Name </h4></label>
-											<input type="text" class="form-control" name="name" id="name" placeholder="Name">
+											<label for="name"><h4> First Name </h4></label>
+											<input type="text" class="form-control" name="name1" id="name1" placeholder="First Name">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="name"><h4> Last Name </h4></label>
+											<input type="text" class="form-control" name="name2" id="name2" placeholder="Last Name">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div class="col-xs-6">
 											<label for="phone"><h4> Phone Number </h4></label>
-											<input type="text" class="form-control" name="phone" id="phone" placeholder="Phone Number">
+											<input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number (Format: 09*********)" pattern="09[0-9]{9}">
 										</div>
 									</div>
 
@@ -194,24 +347,39 @@
 										</div>
 									</div>
 
-									<div class="form-group">
-										<div class="col-xs-6">
-											<label for="address"><h4> Shipping Address </h4></label>
-											<input type="text" class="form-control" id="address" placeholder="Shipping Adress">
-										</div>
-									</div>
 
 									<div class="form-group">
 										<div class="col-xs-6">
 											<label for="password"><h4> Password </h4></label>
-											<input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+											<input type="password" class="form-control" name="password" id="password" placeholder="Password" onkeyup="check()">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div class="col-xs-6">
 										<label for="cpassword"><h4> Verify Password </h4></label>
-											<input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Re-enter Password" required>
+											<input type="password" class="form-control" name="cpassword" id="cpassword" placeholder="Re-enter Password" onkeyup="check()">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="address"><h4> Shipping Address </h4></label>
+											<input type="text" class="form-control" id="address" name="address" placeholder="Shipping Address">
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="col-xs-6">
+											<label for="region"><h4> Region </h4></label>
+											<select class='form-control' id='region' name="region">
+												<option value="" disabled selected>Region</option>
+												<option>Metro Manila</option>
+												<option>North Luzon</option>
+												<option>South Luzon</option>
+												<option>Visayas</option>
+												<option>Mindanao</option>
+											</select>
 										</div>
 									</div>
 
@@ -224,14 +392,125 @@
 								</form>
 							<hr>
 						</div><!--/edit tab-pane-->
+						<div id="modReceive" class="modal fade myModal" role="dialog">
+						<div class="modal-dialog">
 
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Order #:<p id="idreceive"></p></h4>
+							</div>
+							<div class="modal-body" id="modal-body-receive">
+								
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-success" id="receiveord">Receive Order</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+
+						</div>
+						</div>
+						<div id="modCancel" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Order #:<p id="idcancel"></p></h4>
+							</div>
+							<div class="modal-body" id="modal-body-cancel">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel Item</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+
+						</div>
+						</div>
+						<div id="modOTW" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Order #:<p id="idOTW"></p></h4>
+							</div>
+							<div class="modal-body" id="modal-body-OTW">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+
+						</div>
+						</div>
+						<div id="moddelivered" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Return this product?</h4>
+							</div>
+							<div class="modal-body" id="modal-body-delivered">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" id="returnprod">Return</button>
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+
+						</div>
+						</div>
+						<div id="modcancelled" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Order #:<p id="idcancelled"></p></h4>
+							</div>
+							<div class="modal-body" id="modal-body-cancelled">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+
+						</div>
+						</div>
+						<div id="modreturned" class="modal fade myModal " role="dialog">
+						<div class="modal-dialog ">
+
+							<!-- Modal content-->
+							<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Returned Product</h4>
+							</div>
+							<div class="modal-body" id="modal-body-returned">
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+							</div>
+
+						</div>
+						</div>
 						<!--user's purchases-->
 						<div class="tab-pane" id="purchases">
 							<div class="row">
 								<div class="col-md-12">
 									<div class="tabbable-panel">
 										<div class="tabbable-line">
-											<ul class="nav nav-tabs ">
+											<ul class="nav nav-tabs" id="newTab">
 												<li class="active"><a href="#tab_default_1" data-toggle="tab"> To Receive </a></li>
 												<li><a href="#tab_default_2" data-toggle="tab"> Completed </a></li>
 												<li><a href="#tab_default_3" data-toggle="tab"> Cancelled </a></li>
@@ -240,24 +519,63 @@
 
 											<div class="tab-content">
 												<!--view items to be received-->
-												<div class="tab-pane active" id="tab_default_1">
-													<span><a href="dove"><img src="soap.png" class='item-img'></a></span>
-													<span><a href="lotion"><img src="lotion.png" class='item-img'></a></span>
+												<div class="tab-pane here active" id="tab_default_1">
+													{{#each transaction}}
+													{{#if_eq this.cancelled this.returned}}
+													{{#if_eq this.delivered 0}}
+													<div style='background-color:#fbcdcf; border-bottom: 4px solid #ffaaa5;' class="receive">
+														<input type="text" class="id" value="{{id}}" hidden>
+														<center>{{#each items}}
+														<span><img src="{{lookup ../photos @index}}" class='item-img'></span>
+														{{/each}}</center>
+													</div>
+													{{/if_eq}}
+													{{/if_eq}}
+													{{/each}}
 												</div>
 
 												<!--view completed transactions-->
-												<div class="tab-pane" id="tab_default_2">
-													<span><a href="shampoo"><img src="shampoo.png" class='item-img'></a></span>
+												<div class="tab-pane here" id="tab_default_2">
+													{{#each history}}
+													{{#if_eq status 'Delivered'}}
+													<div style='background-color:#fbcdcf; border-bottom: 4px solid #ffaaa5;' class="delivered">
+														<input type="text" value="{{name}}" class="prodname" hidden>
+														<input type="text" value="{{dateOrd}}" class="proddate" hidden>
+														<center>
+														<span><img src="{{photo}}" class='item-img'><br>Date ordered: {{dateFormat dateOrd}}</span>
+														</center>
+													</div>
+													{{/if_eq}}
+													{{/each}}
 												</div>
 
 												<!--view cancelled transactions-->
-												<div class="tab-pane" id="tab_default_3">
-													<span><a href="perfume"><img src="channel.png" class='item-img'></a></span>
+												<div class="tab-pane here" id="tab_default_3">
+													{{#each transaction}}
+													{{#if_eq this.cancelled 1}}
+													<div style='background-color:#fbcdcf; border-bottom: 4px solid #ffaaa5;' class="cancelled">
+														<input type="text" class="id" value="{{id}}" hidden>
+														<center>{{#each items}}
+														<span><img src="{{lookup ../photos @index}}" class='item-img'><br>Date ordered: {{dateFormat dateOrd}}</span>
+														{{/each}}</center>
+													</div>
+													{{/if_eq}}
+													{{/each}}
 												</div>
 
 												<!--view returned items-->
-												<div class="tab-pane" id="tab_default_4">
-													<span><a href="shorts"><img src="Fitness2.png" class='item-img'></a></span>
+												<div class="tab-pane here" id="tab_default_4">
+													{{#each history}}
+													{{#if_eq status 'Returned'}}
+													<div style='background-color:#fbcdcf; border-bottom: 4px solid #ffaaa5;' class="returned">
+														<input type="text" value="{{name}}" class="prodname" hidden>
+														<input type="text" value="{{dateOrd}}" class="proddate" hidden>
+														<center>
+														<span><img src="{{photo}}" class='item-img'><br>Date ordered: {{dateFormat dateOrd}}</span>
+														</center>
+													</div>
+													{{/if_eq}}
+													{{/each}}
 												</div>
 
 											</div><!-- End tab-content -->
@@ -268,40 +586,27 @@
 						</div><!--/tab-pane-->
 
 						<!--user's order history-->
-						<div class="tab-pane" id="orderhistory">
-							<table id="customers">
+						<div class="tab-pane"  id="orderhistory">
+							{{#if history}}
+							<table class='scroll' style='height: 10px;' id="customers">
 								<tr>
 									<th> Item </th>
 									<th> Product Name </th>
 									<th> Order Date </th>
-									<th> Date Received </th>
-									<th> Amount </th>
+									<th> Status </th>
 								</tr>
-
+							{{#each history}}
 								<tr>
-									<td><a href="modess" class="avatar rounded-circle mr-3"><img src="modess.png"></a></td>
-									<td><a href="modess" >Modess Long Napkin </a></td>
-									<td>Feb. 02, 2020</td>
-									<td>Feb. 05, 2020</td>
-									<td> PHP 50.00 </td>
+									<td><img src="{{photo}}" class="avatar rounded-circle mr-3"></td>
+									<td><a href="/product" class="prodlink">{{name}} </a></td>
+									<td>{{dateFormat dateOrd}}</td>
+									<td>{{status}}</td>
 								</tr>
-
-								<tr>
-									<td><a href="lipstick" class="avatar rounded-circle mr-3"><img src="lipstick.png"></a></td>
-									<td><a href="lipstick"> Mac Lipstick </a></td>
-									<td>Feb. 08, 2020</td>
-									<td>Feb. 13, 2020</td>
-									<td>PHP 499.00</td>
-								</tr>
-
-								<tr>
-									<td><a href="oil" class="avatar rounded-circle mr-3"><img src="oil.png"></a></td>
-									<td><a href="oil">Efficascent Oil</a></td>
-									<td>Feb. 10, 2020</td>
-									<td>Feb. 15, 2020</td>
-									<td>PHP 35.00</td>
-								</tr>
+								{{/each}}
 							</table>
+							{{else}}
+							You have no delivered, cancelled, or returned order yet.
+							{{/if}}
 						</div><!--/tab-pane-->
 					</div><!--/tab-content-->
 				</div><!--/col-9-->
@@ -331,6 +636,377 @@
 				$target = $('#'+$input.attr('data-toggle'));
 				$target.slideToggle();
 			});
+
+			$('#purchase').click(function(){
+				$('#banner').prop('hidden', false);
+			});
+			$('#edits').click(function(){
+				$('#banner').prop('hidden', true);
+			});
+			$('#ordhis').click(function(){
+				$('#banner').prop('hidden', true);
+			});
+			
+			$(document).on('click','.receive', function(){
+				var id = $(this).children('.id').val();
+				$.get('/checkid', {id: id}, function(result){
+					var ordt = new Date(result.dateOrd);
+					var todt = new Date(result.dateToday)
+					var rect = new Date(result.dateRec)
+					var shipd = (todt.getTime() - ordt.getTime()) / (1000*60*60*24)
+					var deld = (rect.getTime() - todt.getTime()) / (1000*60*60*24)
+					var items = result.items;
+					var photos = result.photos;
+					var temp = ""
+					var status;
+					var amount = result.amount
+					 month = '' + (ordt.getMonth() + 1),
+					 day = '' + ordt.getDate(),
+					 year = ordt.getFullYear();
+
+
+					if (month.length < 2) 
+						month = '0' + month;
+					if (day.length < 2) 
+						day = '0' + day;
+					var date = month + "-" + day + "-" + year
+
+					for(var i =0; i < items.length; i++){
+						temp += "<tr>"+
+											"<td><img src='" +photos[i]+ "' class='avatar rounded-circle mr-3'></td>"+
+											"<td>" + items[i] + "</td>"+
+											"<td>" + date + "</td>"+
+										"</tr>"
+					}
+					if(shipd <= 1){
+						//can cancel
+						$('#idcancel').text(id);
+						$('#modCancel').modal('toggle')
+						status = "SHIPPING"
+						var test = "<center><p id='message'><strong>Order is still undergoing shipping process. Do you want to cancel?</strong></p></center>"+
+										"<table class='table table-bordered'>"+
+										"<tr>"+
+											"<th> Item </th>"+
+											"<th> Product Name </th>"+
+											"<th> Order Date </th>"+
+										"</tr>"+
+										temp+
+									"</table>"+
+									"<div class='pull-left'>"+
+										"<p id='status'></p> <Strong>STATUS:</Strong> " + status + "</p>"+
+									"</div>"+
+									"<div class='pull-right'>"+
+										"<p id='amount'></p> <Strong>TOTAL:</Strong> PHP " + amount +"</p>"+
+									"</div>"
+						$('#modal-body-cancel').html(test)
+					}
+				else{
+					if(deld <= 0)
+					{
+						$('#idreceive').text(id);
+						$('#modReceive').modal('toggle')
+						status = "DELIVERED"
+						var test = "<center><p id='message'><strong>Mark order as received and release payment to seller?</strong></p></center>"+
+										"<table class='table table-bordered'>"+
+										"<tr>"+
+											"<th> Item </th>"+
+											"<th> Product Name </th>"+
+											"<th> Order Date </th>"+
+										"</tr>"+
+										temp+
+									"</table>"+
+									"<div class='pull-left'>"+
+										"<p id='status'></p> <Strong>STATUS:</Strong> " + status + "</p>"+
+									"</div>"+
+									"<div class='pull-right'>"+
+										"<p id='amount'></p> <Strong>TOTAL:</Strong> PHP " + amount +"</p>"+
+									"</div>"
+						$('#modal-body-receive').html(test)
+					}
+					else{
+						//modal your order is on its way
+						$('#idOTW').text(id);
+						$('#modOTW').modal('toggle')
+						status = "DELIVERING"
+						var test = "<center><p id='message'><strong>Your order is on its way!</strong></p></center>"+
+										"<table class='table table-bordered'>"+
+										"<tr>"+
+											"<th> Item </th>"+
+											"<th> Product Name </th>"+
+											"<th> Order Date </th>"+
+										"</tr>"+
+										temp+
+									"</table>"+
+									"<div class='pull-left'>"+
+										"<p id='status'></p> <Strong>STATUS:</Strong> " + status + "</p>"+
+									"</div>"+
+									"<div class='pull-right'>"+
+										"<p id='amount'></p> <Strong>TOTAL:</Strong> PHP " + amount +"</p>"+
+									"</div>"
+						$('#modal-body-OTW').html(test)
+					}
+				}
+				})
+			})
+
+			$(document).on('click','.delivered', function(){
+				var name = $(this).children('.prodname').val();
+				var dateOrd = $(this).children('.proddate').val();
+				$.get('/checkname', {name: name, dateOrd: dateOrd}, function(result){
+					var ordt = new Date(result.dateOrd);
+					var item = result.name;
+					var photo = result.photo;
+					var temp = ""
+					var status;
+					var price = result.price
+					month = '' + (ordt.getMonth() + 1),
+					day = '' + ordt.getDate(),
+					year = ordt.getFullYear();
+					if (month.length < 2) 
+						month = '0' + month;
+					if (day.length < 2) 
+						day = '0' + day;
+					var date = month + "-" + day + "-" + year
+					temp += "<tr class='itemroww'>"+
+										"<td><img src='" +photo+ "' class='avatar rounded-circle mr-3'></td>"+
+										"<td class='itemname'>" + item + "</td>"+
+										"<td class='itemdate' hidden>" + ordt + "</td>"+
+										"<td>" + date + "</td>"+
+									"</tr>"
+						$('#moddelivered').modal('toggle')
+						status = "RECEIVED"
+						var test = "<table class='table table-bordered'>"+
+										"<tr>"+
+											"<th> Item </th>"+
+											"<th> Product Name </th>"+
+											"<th> Order Date </th>"+
+										"</tr>"+
+										temp+
+									"</table>"+
+									"<div class='pull-left'>"+
+										"<p id='status'></p> <Strong>STATUS:</Strong> " + status + "</p>"+
+									"</div>"+
+									"<div class='pull-right'>"+
+										"<p id='amount'></p> <Strong>TOTAL:</Strong> PHP " + price +"</p>"+
+									"</div>"
+						$('#modal-body-delivered').html(test)
+					
+				})
+			})
+
+			$(document).on('click','.cancelled', function(){
+				var id = $(this).children('.id').val();
+				$.get('/checkid', {id: id}, function(result){
+					var ordt = new Date(result.dateOrd);
+					var items = result.items;
+					var photos = result.photos;
+					var temp = ""
+					var status;
+					var amount = result.amount
+					month = '' + (ordt.getMonth() + 1),
+					day = '' + ordt.getDate(),
+					year = ordt.getFullYear();
+					if (month.length < 2) 
+						month = '0' + month;
+					if (day.length < 2) 
+						day = '0' + day;
+					var date = month + "-" + day + "-" + year
+					for(var i =0; i < items.length; i++){
+						temp += "<tr>"+
+											"<td><img src='" +photos[i]+ "' class='avatar rounded-circle mr-3'></td>"+
+											"<td>" + items[i] + "</td>"+
+											"<td>" + date + "</td>"+
+										"</tr>"
+					}
+
+					$('#idcancelled').text(id);
+						$('#modcancelled').modal('toggle')
+						status = "CANCELLED"
+						var test = "<table class='table table-bordered'>"+
+										"<tr>"+
+											"<th> Item </th>"+
+											"<th> Product Name </th>"+
+											"<th> Order Date </th>"+
+										"</tr>"+
+										temp+
+									"</table>"+
+									"<div class='pull-left'>"+
+										"<p id='status'></p> <Strong>STATUS:</Strong> " + status + "</p>"+
+									"</div>"+
+									"<div class='pull-right'>"+
+										"<p id='amount'></p> <Strong>TOTAL:</Strong> PHP " + amount +"</p>"+
+									"</div>"
+						$('#modal-body-cancelled').html(test)
+					
+				})
+			})
+			$(document).ready(function() {
+			if (location.hash) {
+				$("a[href='" + location.hash + "']").tab("show");
+			}
+			$(document.body).on("click", "#myTab a[data-toggle='tab']", function(event) {
+				location.hash = this.getAttribute("href");
+			});
+			});
+			$(window).on("popstate", function() {
+				var anchor = location.hash || $("a[data-toggle='tab']").first().attr("href");
+				$("a[href='" + anchor + "']").tab("show");
+			});
+
+			$(document).on('click','.returned', function(){
+				var name = $(this).children('.prodname').val();
+				var dateOrd = $(this).children('.proddate').val();
+				$.get('/checkname', {name: name, dateOrd: dateOrd}, function(result){
+					var ordt = new Date(result.dateOrd);
+					var item = result.name;
+					var photo = result.photo;
+					var temp = ""
+					var status;
+					var price = result.price
+					month = '' + (ordt.getMonth() + 1),
+					day = '' + ordt.getDate(),
+					year = ordt.getFullYear();
+					if (month.length < 2) 
+						month = '0' + month;
+					if (day.length < 2) 
+						day = '0' + day;
+					var date = month + "-" + day + "-" + year
+					temp += "<tr>"+
+										"<td><img src='" +photo+ "' class='avatar rounded-circle mr-3'></td>"+
+										"<td>" + item + "</td>"+
+										"<td>" + date + "</td>"+
+									"</tr>"
+						$('#modreturned').modal('toggle')
+						status = "RETURNED"
+						var test = "<table class='table table-bordered'>"+
+										"<tr>"+
+											"<th> Item </th>"+
+											"<th> Product Name </th>"+
+											"<th> Order Date </th>"+
+										"</tr>"+
+										temp+
+									"</table>"+
+									"<div class='pull-left'>"+
+										"<p id='status'></p> <Strong>STATUS:</Strong> " + status + "</p>"+
+									"</div>"+
+									"<div class='pull-right'>"+
+										"<p id='amount'></p> <Strong>TOTAL:</Strong> PHP " + price +"</p>"+
+									"</div>"
+						$('#modal-body-returned').html(test)
+					
+				})
+			})
+
+			var check = function(){
+				var password = $('#password').val()
+				if($('#password').val() === ""){
+					$('#password').css('background-color', 'white')
+					$('#banner4').prop('hidden', true);
+					$('#banner2').prop('hidden', true);
+					$('#banner3').prop('hidden', true);
+					document.getElementById('submit').disabled = false;
+					$('#cpassword').css('background-color', 'white')
+				}
+				else{
+					if(document.getElementById('password').value.length >= 8)
+				  {
+					  $('#banner2').prop('hidden', true);
+					  $('#password').css('background-color', 'white');
+					  $.get('/checkpassword', {password: password}, function(result){
+						  if(result){
+							$('#banner4').prop('hidden', false);
+							$('#password').css('background-color', 'red');
+							document.getElementById('submit').disabled = true;
+						  }
+						  else{
+							$('#banner4').prop('hidden', true);
+							if (document.getElementById('password').value != document.getElementById('cpassword').value)
+							{
+								$('#banner3').prop('hidden', false);
+								$('#cpassword').css('background-color', 'red');
+								document.getElementById('submit').disabled = true;
+							}
+							else{
+								$('#banner3').prop('hidden', true);
+								$('#cpassword').css('background-color', 'white');
+								document.getElementById('submit').disabled = false;
+							}
+						  }
+						  if($('#banner2').prop('hidden') && $('#banner4').prop('hidden') && $('#banner3').prop('hidden') && $('#banner1').prop('hidden')){
+						document.getElementById('submit').disabled = false;
+				  }
+				  else{
+					  document.getElementById('submit').disabled = true;
+				  }
+					  })
+				  }
+				  else{
+					  $('#banner2').prop('hidden', false);
+					  $('#password').css('background-color', 'red');
+					  document.getElementById('submit').disabled = true;
+				  }
+
+				  if($('#banner2').prop('hidden') && $('#banner4').prop('hidden') && $('#banner3').prop('hidden') && $('#banner1').prop('hidden')){
+						document.getElementById('submit').disabled = false;
+				  }
+				  else{
+					  document.getElementById('submit').disabled = true;
+				  }
+				}
+				if($('#banner2').prop('hidden') && $('#banner4').prop('hidden') && $('#banner3').prop('hidden') && $('#banner1').prop('hidden')){
+						document.getElementById('submit').disabled = false;
+				  }
+				  else{
+					  document.getElementById('submit').disabled = true;
+				  }
+			}
+			$('#email').keyup(function(){
+				  var email = $(this).val();
+				  $.get('/checkEmail', {email: email}, function(result){
+					  if(result.email === email){
+						  $('#banner1').prop('hidden', false);
+						  $('#email').css('background-color', 'red');
+						  document.getElementById('submit').disabled = true;
+					  }
+					  else{
+						   $('#banner1').prop('hidden', true);
+						  $('#email').css('background-color', 'white');
+						  document.getElementById('submit').disabled = false;
+					  }
+					  if($('#banner2').prop('hidden') && $('#banner1').prop('hidden') && $('#banner3').prop('hidden') && $('#banner4').prop('hidden')){
+						document.getElementById('submit').disabled = false;
+					  }
+					  else{
+					  document.getElementById('submit').disabled = true;
+				  		}
+				  		
+				  })
+			  })
+
+			  $("#receiveord").on('click', function(){
+				  var id = $('#idreceive').text();
+				  $.get('/receive', {id:id})
+				  location.reload(true);
+			  })
+
+			  $("#returnprod").click(function(){
+				  var name = $(this).parent().siblings("#modal-body-delivered").children().children().children().siblings('.itemroww').children('.itemname').text()
+				  var date = $(this).parent().siblings("#modal-body-delivered").children().children().children().siblings('.itemroww').children('.itemdate').text()
+				  $.get('/return', {name: name, date: date});
+				  location.reload(true);
+			  })
+
+			  $('.prodlink').click(function(){
+				  var name = $(this).text()
+				  var href = $(this).attr('href') + 's?name=' + name;
+				  $(this).attr('href', href);
+			  })
+
+			  $('#nextday').click(function(){
+				  var curdate = $('#curdate').text()
+				  $.get('/nextday', {curdate: curdate});
+				  location.reload(true);
+			  })
 		</script>
 	</body>
 </html>

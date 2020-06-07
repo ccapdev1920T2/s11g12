@@ -19,10 +19,10 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="beauty">Beauty</a></li>
-      <li><a href="fitness">Fitness</a></li>
-      <li><a href="fashion">Fashion</a></li>
-      <li><a href="health">Health</a></li>
+      <li><a href="/categories" class="link">Beauty</a></li>
+      <li><a href="/categories" class="link">Fitness</a></li>
+      <li><a href="/categories" class="link">Fashion</a></li>
+      <li><a href="/categories" class="link">Health</a></li>
       <li class="divider"></li>
       <li><a href="promos">Promos!</a></li>
       <li class="divider"></li>
@@ -30,21 +30,33 @@
     </ul>
   </li>
 </ul>
-<form class="navbar-form navbar-left" role="search">
+<form class="navbar-form navbar-left" action="search" method="GET">
   <div class="form-group">
-    <input type="text" class="form-control" placeholder="Search" style= "width: 500px;">
+    <input type="text" class="form-control" placeholder="Search" style= "width: 500px;" name='search'>
   </div>
   <button type="submit" class="btn btn-default">Submit</button>
 </form>
 <ul class="nav navbar-nav navbar-right">
-    <li class="dropdown">
-    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">User <span class="caret"></span></a>
+  <li class="dropdown">
+    {{#if_eq logged 1}}
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" id="fname">{{firstname}}<span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="login">Login/ Sign Up</a></li>
-      <li><a href="profile">View Profile</a></li>
+      <li><a href="/profile">My Profile</a></li>
+      <li><a href="/wishlist">My Wishlist</a></li>
+      <li><a href="/logout">Log Out</a></li>
     </ul>
   </li>
   <li><a href="cart">My Cart</a></li>
+  {{/if_eq}}
+  {{#if_eq logged 0}}
+  <li><a href="login">Login/ Sign Up</a></li>
+  {{/if_eq}}
+  <script>
+    $(document).on('click', '.link', function(){
+      var href = $(this).attr('href') + "?type=" + $(this).text();
+      $(this).attr('href', href);
+    })
+  </script>
 </ul>
 </div>
 </div>

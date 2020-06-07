@@ -244,45 +244,17 @@
 		            <div class="sign-in" id="sign-in-info">
 		            	<h1> Sign In </h1>
 		            	<form id="sign-in-form" method = "POST" action = "/login">
-		              		<input type="email" id="emailsi" name = "emailsi" placeholder="Email" required/>
-		              		<input type="password" id="passwordsi" placeholder="Password" required/>
-		              		<button class="control-button in" type="submit" name="signin" id="signin" onlick = "/profile"> Sign In </button>
+		              		<input type="email" id="email" name = "email" placeholder="Email" required/>
+		              		<input type="password" id="password" placeholder="Password" name = "password" required/>
+		              		<button class="control-button in" type="submit" name="signin" id="signin"> Sign In </button>
 		            	</form>
+						<br><br>
+						<div class="alert alert-danger" style="width: 300px;" {{hidden}}>
+							<strong>Oh no!</strong> Username or Password may be incorrect.
+						</div>
 		          	</div>
 				</div>
 			</div>
 		</header>
-
-
-      	<script>
-	      	$('#signin').click(function(){
-	      		var email = $('#emailsi').val();
-	      		var password = $('#passwordsi').val();
-
-	      		if(email!="" && password!="")
-	      		{
-					if(email=="wendell@gmail.com" && password=="123"){
-						window.open("/profile");
-
-					}
-          else if(email=="kristal@gmail.com" && password=="123"){
-						window.open("/profile");
-					}
-          else if(email=="jus@gmail.com" && password=="123"){
-						window.open("/profile");
-					}
-          else if(email=="juts@gmail.com" && password=="123"){
-						window.open("/profile");
-          }
-          else if(email=="daks@gmail.com" && password=="123"){
-						window.open("/profile");
-          }
-					else
-						alert("User does not exist! Please create an account.");
-	      		}
-	      	});
-
-
-      	</script>
 	</body>
 </html>

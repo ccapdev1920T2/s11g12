@@ -1,24 +1,40 @@
+const multer = require('multer');
+const multers3 = require('multer-s3');
+const aws = require('aws-sdk');
+const path = require('path')
+const s3 = new aws.S3({
+    accessKeyId: process.env.ACCESS_KEY,
+    secretAccessKey: process.env.SECRET_ACCESS,
+    Bucket: 'onclick'
+})
+
+const upload = multer({
+    storage: multers3({
+        s3: s3,
+        bucket: 'onclick',
+        acl: 'public-read',
+        key: function(req, file, cb) {
+            cb(null, file.originalname)
+        }
+    }),
+    fileFilter: function (req, file, cb){
+        const filetypes = /jpeg|jpg|png|gif/;
+        const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+        const mimetype = filetypes.test(file.mimetype);
+        if(mimetype && extname){
+            return cb(null, true);
+        }
+        else{
+           return cb(null, false);
+        }
+    }
+});
 
 // import module `express`
 const express = require('express');
 
 // import module `controller` from `../controllers/controller.js`
 const controller = require('../controllers/controller.js');
-const loginController = require('../controllers/loginController.js');
-const signupController = require('../controllers/signupController.js');
-const categoryController = require('../controllers/categoryController.js');
-const contactusController = require('../controllers/contactusController.js');
-const unavailableController = require('../controllers/unavailableController.js');
-const promosController = require('../controllers/promosController.js');
-const newreleaseController = require('../controllers/newreleaseController.js');
-const profileController = require('../controllers/profileController.js');
-const cartController = require('../controllers/cartController.js');
-const productController = require('../controllers/productController.js');
-const aboutusController = require('../controllers/aboutusController.js');
-const bossController = require('../controllers/bossController.js');
-const checkoutController = require('../controllers/checkoutController.js');
-
-
 
 const app = express();
 
@@ -26,116 +42,77 @@ app.get('/', controller.getHomepage);
 
 app.get('/homepage', controller.getHomepage);
 
-app.get('/aboutus', aboutusController.getAboutUs);
+app.get('/aboutus', controller.getAboutUs);
 
-app.get('/boss', bossController.getBoss);
+app.get('/boss', controller.getBoss);
 
-app.get('/login', loginController.getLogin);
+app.get('/checkEmail', controller.getCheckEmail);
 
-app.post('/login', loginController.postLogin);
+app.get('/login', controller.getLogin);
 
-app.get('/signup', signupController.getSignup);
+app.post('/login', controller.postLogin);
 
-app.get('/profile', profileController.getProfile);
+app.get('/logout', controller.getLogout);
 
-app.get('/contactus', contactusController.getContactUs);
+app.get('/search', controller.getSearch);
 
-app.get('/unavailable', unavailableController.getUnavailable);
+app.get('/signup', controller.getSignup);
 
-app.get('/beauty', categoryController.getBeauty);
+app.get('/profile', controller.getProfile);
 
-app.get('/fitness', categoryController.getFitness);
+app.get('/contactus', controller.getContactUs);
 
-app.get('/fashion', categoryController.getFashion);
+app.get('/unavailable', controller.getUnavailable);
 
-app.get('/health', categoryController.getHealth);
+app.get('/categories', controller.getCategories);
 
-app.get('/promos', promosController.getPromos);
+app.get('/promos', controller.getPromos);
 
-app.get('/newrelease', newreleaseController.getNewRelease);
+app.get('/newrelease', controller.getNewRelease);
 
-app.get('/cart', cartController.getCart);
+app.get('/cart', controller.getCart);
 
-app.get('/checkout', checkoutController.getCheckout);
+app.get('/wishlist', controller.getWishlist);
 
-// HOMEPAGE PRODUCTS
-app.get('/shorts', productController.getShorts);
+app.get('/checkout', controller.getCheckout);
 
-app.get('/modess', productController.getModess);
+app.get('/products', controller.getProducts);
 
-app.get('/oil', productController.getOil);
+app.get('/checkLogged', controller.getLogged);
 
-app.get('/lipstick', productController.getLipstick);
+app.get('/checkReview', controller.getReview);
 
-app.get('/swim', productController.getSwim);
+app.get('/checkBought', controller.getBought);
 
-app.get('/shampoo', productController.getShampoo);
+app.get('/addCart', controller.getAddCart);
 
-app.get('/perfume', productController.getPerfume);
+app.get('/addWishlist', controller.getAddWishlist);
 
-app.get('/dove', productController.getDove);
+app.get('/deleteCart', controller.getDeleteCart);
 
-app.get('/lotion', productController.getLotion);
-// END OF HOMEPAGE PRODUCTS
+app.get('/deleteWishlist', controller.getDeleteWishlist);
 
-// BEAUTY PRODUCTS
-app.get('/carmex', productController.getCarmex);
+app.get('/getTotal', controller.getTotal);
 
-app.get('/marcjacobs', productController.getMarcJacobs);
+app.get('/checkpassword', controller.getCheckPassword);
 
-app.get('/maclipstick', productController.getMacLipstick);
+app.get('/checkid', controller.getCheckId);
 
-app.get('/brpalette', productController.getBRPalette);
+app.get('/checkname', controller.getCheckname)
 
-app.get('/serum', productController.getSerum);
-// END OF BEAUTY PRODUCTS
+app.get('/receive', controller.getReceive);
 
-// FITNESS PRODUCTS
-app.get('/yogapants', productController.getYogaPants);
+app.get('/return', controller.getReturn)
 
-app.get('/tumbler', productController.getTumbler);
+app.get('/nextday', controller.getNextday);
 
-app.get('/jumprope', productController.getJumpRope);
+app.post('/profile', controller.postProfile);
 
-app.get('/whey', productController.getWhey);
+app.post('/signup', upload.single('img'), controller.postSignup)
 
-app.get('/sportsbra', productController.getSportsBra);
-// END OF FITNESS PRODUCTS
+app.post('/products', controller.postProducts)
 
-// FASHION PRODUCTS
-app.get('/dress', productController.getDress);
-
-app.get('/stripes', productController.getStripes);
-
-app.get('/buckethat', productController.getBucketHat);
-
-app.get('/sweater', productController.getSweater);
-
-app.get('/poloshirt', productController.getPoloShirt);
-// END OF FASHION PRODUCTS
-
-// HEALTH PRODUCTS
-app.get('/collagen', productController.getCollagen);
-
-app.get('/keto', productController.getKeto);
-
-app.get('/tums', productController.getTums);
-
-app.get('/goli', productController.getGoli);
-
-app.get('/honey', productController.getHoney);
-// END OF HEALTH PRODUCTS
-
-// NEW RELEASE PRODUCTS
-app.get('/nike', productController.getWindbreaker);
-
-app.get('/victoria', productController.getVictoria);
-
-app.get('/sunglasses', productController.getSunglasses);
-// END OF NEW RELEASE PRODUCTS
+app.post('/checkout', controller.postCheckout)
 
 
-
-// exports the object `app` (defined above)
-// when another script exports from this file
 module.exports = app;

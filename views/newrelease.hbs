@@ -170,13 +170,13 @@
 				      <div class="carousel slide multi-item-carousel" id="theCarousel">
 				        <div class="carousel-inner">
 				          <div class="item active">
-				            <div class="col-xs-4"><a href="/nike"><img src="nike.png"></a></div>
+				            <div class="col-xs-4"><a href="/product"class='name'><center><strong style="color: red;">Nike Windbreaker</strong></center><img src="nike.png"></a></div>
 				          </div>
 				          <div class="item">
-				            <div class="col-xs-4"><a href="/victoria"><img src="victoria.png" class="img-responsive"></a></div>
+				            <div class="col-xs-4"><a href="/product"class='name'><center><strong style="color: red;">Victorias Secret Perfume</strong></center><img src="victoria.png" class="img-responsive"></a></div>
 				          </div>
 				          <div class="item">
-				            <div class="col-xs-4"><a href="/sunglasses"><img src="sunglasses.png" class="img-responsive"></a></div>
+				            <div class="col-xs-4"><a href="/product"class='name'><center><strong style="color: red;">Sunglasses</strong></center><img src="sunglasses.png" class="img-responsive"></a></div>
 				          </div>
 				        </div>
 				        <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
@@ -209,6 +209,11 @@
 					$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
 				}
 			});
+			$(document).on("click", ".name", function(){
+        var name = $(this).children().children().text();
+        var href = $(this).attr('href') + "?name=" + name;
+        $(this).attr('href', href) 
+      })
 		</script>
 	</body>
 </html>
