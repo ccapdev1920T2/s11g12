@@ -39,19 +39,7 @@ app listening at port 3000
 http://localhost:3000/homepage
 ```
 
-7. ### Products
-You can click on the products you can see on the homepage such as the promos. Once cliked
-it will redirect you to the page of the product itself, where you can go and see some details.
-You can also type in the quanity of products you wish to have added on the cart or buy directly.
-You can also access these products by:
-```
-http://localhost:3000/shorts
-http://localhost:3000/modess
-http://localhost:3000/oil
-
-```
-
-8. ### Navigation Bar
+7. ### Navigation Bar
 There are multiple parts here in Navigation bar
 - Home
   -This is where you will be directed to the homepage
@@ -66,7 +54,7 @@ There are multiple parts here in Navigation bar
 - My Cart
   -This is where you can view the user's products that are added in the cart.
 
-9. ### Sign Up
+8. ### Sign Up
 Let us first create a new user by clicking on sign up and Enter these as values:
 ```
 Name : Vhino Ramos
@@ -77,28 +65,76 @@ Choose  photo: /public/img/vhino.jpg
 ```
 After this you will be directed to your profile
 
-10. ### Log In
+9. ### Log In
 You can close the app and rerun it. On the navigation bar click on user then "Login / Sign up".
 ```
 Email: wendell@gmail.com
-Password: 123
-```
-After this you will be directed to your profile
+Password: 12345678
 
-11. ### Check Out 
+Email: kristal@gmail.com
+Password: 12345678
+
+Email: jus@gmail.com
+Password: 12345678
+```
+After this you will be directed to homepage where you can see some of the products
+
+10. ###Search
+You can search some products in the search bar by using some keywords from the product name or the whole product name itself
+There will be no result if the input is not a product's name
+```
+Shorts
+
+Sweater
+
+Collagen
+```
+
+11. ###Categories
+There are different categories to help filter the products
+```
+Beauty
+Fitness
+Fashion
+Health
+Promos
+New Releases
+```
+
+12. ### Contact Us
+This would route the user to send a message to us (just for display)
+
+13. ### More into products
+```
+      A. Review a Product would only work if you have bought the product already
+      B. You can only review a product once
+      C. In reviewing a product you can leave a comment, a title, and star rating
+      D. You can increase the quantity of each product that you want to buy
+      E. Buy now will directly go to checkout
+      F. Check out will put the product in the cart
+      G. Add to wishlist and the product will be added to the wishlist
+ ```     
+14. ### Profile
+  ```
+  A. Edit- You can edit your profile info such as first name, last name, etc.
+  B. To recieve - are the items that have been ordered and to be recieved by the customer
+      once that the order is already delivered you can click on "Order recieved" button
+  C. Completed - Are the items that have been successfully recieved. You can opt return the product by clicking "return" button
+  D. Cancelled -  Are the products cancelled before they are recieved
+  E. Returned - Are the items returned by the user
+  F. Day Simulation - Is used to simulate the days passing
+  
+  ```
+
+15. ### Check Out 
     This is when you click on My Cart on the navigation bar then "checkout" button. Or via
     clicking on check out when you are on the specific product page.
 
-11. ### Footer
+16. ### Footer
 Here you can access different information about the website such as "About us", "Contact Us", "Our boses" and etc.
 You can also directly access these by:
-```
-http://localhost:3000/aboutus
-http://localhost:3000/boss
-http://localhost:3000/contactus
-```
 
-11. ### Link
+17. ### Link
 Link for the heroku app
 You can also directly access these by:
 ```
