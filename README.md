@@ -144,7 +144,7 @@ https://s11g12.herokuapp.com/
 
 ## Authors
 
-* **Elderwell Ramos** - *Initial work*
-* **Justine Fernandez** - *Initial work*
-* **Kristal Ambrosio** - *Initial work*
+* **Elderwell Ramos** 
+* **Justine Fernandez** 
+* **Kristal Ambrosio** 
 
