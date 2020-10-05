@@ -98,6 +98,12 @@ http://localhost:3000/boss
 http://localhost:3000/contactus
 ```
 
+11. ### Link
+Link for the heroku app
+You can also directly access these by:
+```
+https://s11g12.herokuapp.com/
+```
 
 
 ## Authors
