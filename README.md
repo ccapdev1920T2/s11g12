@@ -90,7 +90,7 @@ Sweater
 Collagen
 ```
 
-11. ###Categories
+11. ### Categories
 There are different categories to help filter the products
 ```
 Beauty
