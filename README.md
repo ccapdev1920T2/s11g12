@@ -79,7 +79,7 @@ Password: 12345678
 ```
 After this you will be directed to homepage where you can see some of the products
 
-10. ###Search
+10. ### Search
 You can search some products in the search bar by using some keywords from the product name or the whole product name itself
 There will be no result if the input is not a product's name
 ```
