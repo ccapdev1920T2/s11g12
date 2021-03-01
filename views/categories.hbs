@@ -204,11 +204,11 @@
 				      <div class="carousel slide multi-item-carousel" id="theCarousel">
 				        <div class="carousel-inner">
 				          <div class="item active">
-				            <div class="col-xs-4"><a href="/products" class="links"><center><strong style="color: red;">{{actname}}</strong></center><img src="{{activeimg}}"></a></div>
+				            <div class="col-xs-4"><a href="/products?name={{actname}}" class="links"><center><strong style="color: red;">{{actname}}</strong></center><img src="{{activeimg}}"></a></div>
 				          </div>
 				          {{#each products}}
 				          <div class="item">
-				            <div class="col-xs-4"><a href="/products" class="links"><center><strong style="color: red;">{{name}}</strong></center><img src="{{photo}}" class="img-responsive"></a></div>
+				            <div class="col-xs-4"><a href="/products?name={{name}}" class="links"><center><strong style="color: red;">{{name}}</strong></center><img src="{{photo}}" class="img-responsive"></a></div>
 				          </div>
 				          {{/each}}
 				        </div>
@@ -222,11 +222,6 @@
 				<br>
 
 		<script type="text/javascript">
-			$(document).on('click', '.links', function(){
-				var name  = $(this).children().children().text();
-				var href = "/products?name=" + name;
-				$(this).attr('href', href) 
-			})
 			// Instantiate the Bootstrap carousel
 			$('.multi-item-carousel').carousel({
 				interval: false

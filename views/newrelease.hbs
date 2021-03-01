@@ -164,19 +164,19 @@
 				<p style="text-align:center; font-family: Helvetica Nue, sans-serif; letter-spacing: 5px;"> Our Products: </p>
 				</div>
 
-				<div class="container1">
+				<div class="container">
 				  <div class="row">
 				    <div class="col-md-12">
 				      <div class="carousel slide multi-item-carousel" id="theCarousel">
 				        <div class="carousel-inner">
 				          <div class="item active">
-				            <div class="col-xs-4"><a href="/product"class='name'><center><strong style="color: red;">Nike Windbreaker</strong></center><img src="nike.png"></a></div>
+				            <div class="col-xs-12"><a href="/products?name=Nike Windbreaker"class='name'><center><strong style="color: red;">Nike Windbreaker</strong></center><img src="nike.png" style="margin-left:25%;"></a></div>
 				          </div>
 				          <div class="item">
-				            <div class="col-xs-4"><a href="/product"class='name'><center><strong style="color: red;">Victorias Secret Perfume</strong></center><img src="victoria.png" class="img-responsive"></a></div>
+				            <div class="col-xs-12"><a href="/products?name=Victorias Secret Perfume"class='name'><center><strong style="color: red;">Victorias Secret Perfume</strong></center><img src="victoria.png" style="margin-left:25%;" class="img-responsive"></a></div>
 				          </div>
 				          <div class="item">
-				            <div class="col-xs-4"><a href="/product"class='name'><center><strong style="color: red;">Sunglasses</strong></center><img src="sunglasses.png" class="img-responsive"></a></div>
+				            <div class="col-xs-12"><a href="/products?name=Sunglasses"class='name'><center><strong style="color: red;">Sunglasses</strong></center><img src="sunglasses.png" style="margin-left:25%;" class="img-responsive"></a></div>
 				          </div>
 				        </div>
 				        <a class="left carousel-control" href="#theCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
@@ -209,10 +209,6 @@
 					$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
 				}
 			});
-			$(document).on("click", ".name", function(){
-        var name = $(this).children().children().text();
-        var href = $(this).attr('href') + "?name=" + name;
-        $(this).attr('href', href) 
       })
 		</script>
 	</body>

@@ -19,10 +19,10 @@
   <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories <span class="caret"></span></a>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="/categories" class="link">Beauty</a></li>
-      <li><a href="/categories" class="link">Fitness</a></li>
-      <li><a href="/categories" class="link">Fashion</a></li>
-      <li><a href="/categories" class="link">Health</a></li>
+      <li><a href="/categories?type=Beauty" class="link">Beauty</a></li>
+      <li><a href="/categories?type=Fitness" class="link">Fitness</a></li>
+      <li><a href="/categories?type=Fashion" class="link">Fashion</a></li>
+      <li><a href="/categories?type=Health" class="link">Health</a></li>
       <li class="divider"></li>
       <li><a href="promos">Promos!</a></li>
       <li class="divider"></li>
@@ -51,12 +51,6 @@
   {{#if_eq logged 0}}
   <li><a href="login">Login/ Sign Up</a></li>
   {{/if_eq}}
-  <script>
-    $(document).on('click', '.link', function(){
-      var href = $(this).attr('href') + "?type=" + $(this).text();
-      $(this).attr('href', href);
-    })
-  </script>
 </ul>
 </div>
 </div>

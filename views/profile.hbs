@@ -424,7 +424,7 @@
 							<div class="modal-body" id="modal-body-cancel">
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel Item</button>
+								<button type="button" class="btn btn-danger" id="cancelord">Cancel Item</button>
 								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 							</div>
 							</div>
@@ -556,8 +556,8 @@
 													<div style='background-color:#fbcdcf; border-bottom: 4px solid #ffaaa5;' class="cancelled">
 														<input type="text" class="id" value="{{id}}" hidden>
 														<center>{{#each items}}
-														<span><img src="{{lookup ../photos @index}}" class='item-img'><br>Date ordered: {{dateFormat dateOrd}}</span>
-														{{/each}}</center>
+														<span><img src="{{lookup ../photos @index}}" class='item-img'></span>
+														{{/each}}<br>Date ordered: {{dateFormat dateOrd}}</center>
 													</div>
 													{{/if_eq}}
 													{{/each}}
@@ -986,6 +986,12 @@
 			  $("#receiveord").on('click', function(){
 				  var id = $('#idreceive').text();
 				  $.get('/receive', {id:id})
+				  location.reload(true);
+			  })
+
+			  $("#cancelord").on('click', function(){
+				  var id = $('#idcancel').text();
+				  $.get('/cancel', {id:id})
 				  location.reload(true);
 			  })
 

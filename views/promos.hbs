@@ -211,11 +211,6 @@
 					$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
 				}
 			});
-			$(document).on("click", ".name", function(){
-        var name = $(this).children().children().text();
-        var href = $(this).attr('href') + "?name=" + name;
-        $(this).attr('href', href) 
-      })
 		</script>
 	</body>
 </html>

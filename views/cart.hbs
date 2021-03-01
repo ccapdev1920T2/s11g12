@@ -46,9 +46,9 @@
                             <tr>
                                 <td class="col-sm-8 col-md-6">
                                     <div class="media">
-                                        <a class="thumbnail pull-left" href="/product"> <img class="media-object image" src="{{lookup ../photo @index}}" style="width: 72px; height: 72px;"> </a>
+                                        <a class="thumbnail pull-left" href="/products?name={{this}}"> <img class="media-object image" src="{{lookup ../photo @index}}" style="width: 72px; height: 72px;"> </a>
                                         <div class="media-body"><br>
-                                            <h4 class="media-heading" style="text-align: center;"><a href="/product" class="name"><p>{{this}}</p></a></h4>
+                                            <h4 class="media-heading" style="text-align: center;"><a href="/products?name={{this}}" class="name"><p>{{this}}</p></a></h4>
                                         </div>
                                     </div>
                                 </td>
@@ -227,12 +227,6 @@
                 $.get('/getTotal', {sub: sub, total: total})
             })
 
-            $('.name').click(function(){
-                var name = $(this).children().text();
-                var href = $(this).attr('href') + 's?name=' + name
-                $(this).attr('href', href)
-            })
-            })
         </script>
     </body>
 </html>
